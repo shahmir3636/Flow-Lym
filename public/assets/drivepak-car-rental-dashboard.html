@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DrivePak CRM - Car Rental Automation</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+--bg:#f4f8f6;--bg2:#ffffff;--bg3:#eef5f1;--bg4:#e3eee8;
+--border:#d7e3dc;--border2:#b8ccc1;
+--accent:#0f766e;--accent2:#115e59;--accent-glow:rgba(15,118,110,.12);
+--green:#16a34a;--green-bg:rgba(22,163,74,.10);
+--orange:#d97706;--orange-bg:rgba(217,119,6,.10);
+--red:#dc2626;--red-bg:rgba(220,38,38,.10);
+--purple:#7c3aed;--purple-bg:rgba(124,58,237,.10);
+--cyan:#0e7490;--cyan-bg:rgba(14,116,144,.10);
+--text:#15221c;--text2:#52635b;--text3:#7b8a82;
+--card-r:12px;--r:8px;
+font-family:'Inter',system-ui,sans-serif;
+}
+body{background:var(--bg);color:var(--text);height:100%;min-height:100%;display:flex;overflow:hidden}
+.sidebar{width:240px;background:var(--bg2);border-right:1px solid var(--border);display:flex;flex-direction:column;height:100%;flex-shrink:0}
+.logo{padding:20px 18px 16px;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--border)}
+.logo-icon{width:34px;height:34px;background:var(--accent);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px}
+.logo-text{font-size:15px;font-weight:700;letter-spacing:-.3px}
+.logo-sub{font-size:10px;color:var(--text3);letter-spacing:.5px;text-transform:uppercase}
+.nav{padding:12px 10px;flex:1;overflow-y:auto}
+.nav-section{font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:.8px;padding:8px 8px 4px;margin-top:8px}
+.nav-item{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:var(--r);cursor:pointer;color:var(--text2);font-size:13px;font-weight:500;transition:all .15s;margin:1px 0}
+.nav-item:hover{background:var(--bg3);color:var(--text)}
+.nav-item.active{background:var(--accent-glow);color:var(--accent);border:1px solid rgba(79,126,248,.2)}
+.nav-item i{font-size:16px;width:16px}
+.nav-badge{margin-left:auto;background:var(--red);color:#fff;font-size:10px;font-weight:700;padding:1px 6px;border-radius:10px;min-width:18px;text-align:center}
+.nav-badge.green{background:var(--green)}
+.sidebar-footer{padding:12px 10px;border-top:1px solid var(--border)}
+.user-card{display:flex;align-items:center;gap:10px;padding:8px;border-radius:var(--r);cursor:pointer}
+.user-card:hover{background:var(--bg3)}
+.avatar{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0}
+.av-blue{background:var(--accent);color:#fff}
+.av-green{background:var(--green);color:#000}
+.av-orange{background:var(--orange);color:#000}
+.av-purple{background:var(--purple);color:#fff}
+.av-red{background:var(--red);color:#fff}
+.av-cyan{background:var(--cyan);color:#000}
+.main{flex:1;display:flex;flex-direction:column;height:100%;overflow:hidden}
+.topbar{background:var(--bg2);border-bottom:1px solid var(--border);padding:0 24px;height:56px;display:flex;align-items:center;gap:16px;flex-shrink:0}
+.page-title{font-size:16px;font-weight:600;flex:1}
+.topbar-actions{display:flex;align-items:center;gap:8px}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:var(--r);font-size:13px;font-weight:500;cursor:pointer;border:1px solid var(--border);background:var(--bg3);color:var(--text);transition:all .15s}
+.btn:hover{background:var(--bg4);border-color:var(--border2)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn.primary:hover{background:var(--accent2)}
+.btn i{font-size:15px}
+.search-box{display:flex;align-items:center;gap:8px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:7px 12px;width:220px}
+.search-box input{background:none;border:none;outline:none;color:var(--text);font-size:13px;flex:1}
+.search-box input::placeholder{color:var(--text3)}
+.search-box i{color:var(--text3);font-size:15px}
+.content{flex:1;overflow-y:auto;padding:24px}
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px}
+.stat-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--card-r);padding:18px 20px;position:relative;overflow:hidden}
+.stat-label{font-size:12px;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
+.stat-val{font-size:26px;font-weight:700;margin-bottom:4px}
+.stat-val.blue{color:var(--accent)}
+.stat-val.green{color:var(--green)}
+.stat-val.orange{color:var(--orange)}
+.stat-val.purple{color:var(--purple)}
+.stat-delta{font-size:12px;color:var(--text2)}
+.stat-delta span{color:var(--green);font-weight:600}
+.stat-icon{position:absolute;top:18px;right:18px;width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px}
+.si-blue{background:var(--accent-glow);color:var(--accent)}
+.si-green{background:var(--green-bg);color:var(--green)}
+.si-orange{background:var(--orange-bg);color:var(--orange)}
+.si-purple{background:var(--purple-bg);color:var(--purple)}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+.three-col{display:grid;grid-template-columns:2fr 1fr;gap:16px;margin-bottom:16px}
+.full-col{margin-bottom:16px}
+.panel{background:var(--bg2);border:1px solid var(--border);border-radius:var(--card-r)}
+.panel-head{padding:14px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.panel-title{font-size:14px;font-weight:600}
+.panel-body{padding:16px 18px}
+.table-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse}
+th{font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;padding:10px 14px;text-align:left;border-bottom:1px solid var(--border);white-space:nowrap}
+td{padding:11px 14px;font-size:13px;border-bottom:1px solid rgba(46,58,85,.5);white-space:nowrap}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:rgba(255,255,255,.02)}
+.badge{display:inline-flex;align-items:center;gap:4px;padding:3px 9px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap}
+.badge-green{background:var(--green-bg);color:var(--green)}
+.badge-orange{background:var(--orange-bg);color:var(--orange)}
+.badge-red{background:var(--red-bg);color:var(--red)}
+.badge-blue{background:var(--accent-glow);color:var(--accent)}
+.badge-purple{background:var(--purple-bg);color:var(--purple)}
+.badge-cyan{background:var(--cyan-bg);color:var(--cyan)}
+.badge-gray{background:var(--bg4);color:var(--text2)}
+.dot{width:6px;height:6px;border-radius:50%;background:currentColor}
+.chat-list{flex:1;overflow-y:auto;padding:4px 0}
+.chat-item{display:flex;align-items:flex-start;gap:10px;padding:10px 16px;cursor:pointer;border-bottom:1px solid rgba(46,58,85,.4);transition:background .1s}
+.chat-item:hover,.chat-item.active{background:var(--bg3)}
+.chat-meta{flex:1;min-width:0}
+.chat-name{font-size:13px;font-weight:600;display:flex;align-items:center;justify-content:space-between}
+.chat-time{font-size:11px;color:var(--text3)}
+.chat-preview{font-size:12px;color:var(--text2);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:200px}
+.unread-dot{width:8px;height:8px;border-radius:50%;background:var(--accent);flex-shrink:0;margin-top:4px}
+.msg-header{padding:12px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px}
+.msg-body{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px}
+.msg-bubble{max-width:75%;padding:10px 14px;border-radius:12px;font-size:13px;line-height:1.5}
+.msg-in{background:var(--bg3);border-radius:4px 12px 12px 12px;align-self:flex-start}
+.msg-out{background:var(--accent);border-radius:12px 4px 12px 12px;align-self:flex-end;color:#fff}
+.msg-out.ai{background:rgba(79,126,248,.2);border:1px solid rgba(79,126,248,.3);color:var(--text)}
+.msg-label{font-size:11px;color:var(--text3);text-align:center;margin:4px 0}
+.msg-footer{padding:10px 16px;border-top:1px solid var(--border);display:flex;gap:8px}
+.msg-input{flex:1;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:8px 12px;font-size:13px;color:var(--text);outline:none}
+.car-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px}
+.car-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--card-r);overflow:hidden;cursor:pointer;transition:all .2s}
+.car-card:hover{border-color:var(--border2);transform:translateY(-2px)}
+.car-card.rented{border-color:rgba(239,68,68,.3)}
+.car-img{height:110px;display:flex;align-items:center;justify-content:center;font-size:52px;background:var(--bg4)}
+.car-info{padding:12px}
+.car-name{font-size:13px;font-weight:600;margin-bottom:4px}
+.car-price{font-size:16px;font-weight:700;color:var(--accent);margin-bottom:6px}
+.car-price span{font-size:11px;color:var(--text2);font-weight:400}
+.car-tags{display:flex;flex-wrap:wrap;gap:4px}
+.tag{font-size:10px;padding:2px 7px;border-radius:4px;background:var(--bg4);color:var(--text2);border:1px solid var(--border)}
+.timeline{display:flex;flex-direction:column;gap:0}
+.tl-item{display:flex;gap:14px;padding:12px 0;position:relative}
+.tl-item:not(:last-child)::before{content:'';position:absolute;left:14px;top:36px;bottom:-12px;width:1px;background:var(--border)}
+.tl-dot{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0}
+.tl-content{flex:1;padding-top:2px}
+.tl-title{font-size:13px;font-weight:500;margin-bottom:2px}
+.tl-sub{font-size:12px;color:var(--text2)}
+.tl-time{font-size:11px;color:var(--text3);margin-top:2px}
+.agent-item{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:var(--r);border:1px solid var(--border);background:var(--bg3);margin-bottom:8px}
+.agent-info{flex:1}
+.agent-name{font-size:13px;font-weight:600}
+.agent-role{font-size:11px;color:var(--text2)}
+.agent-stats{display:flex;gap:12px}
+.agent-stat{text-align:center}
+.agent-stat-val{font-size:14px;font-weight:700;color:var(--accent)}
+.agent-stat-lbl{font-size:10px;color:var(--text3)}
+.online{width:8px;height:8px;border-radius:50%;background:var(--green);flex-shrink:0}
+.offline{width:8px;height:8px;border-radius:50%;background:var(--text3);flex-shrink:0}
+.busy{width:8px;height:8px;border-radius:50%;background:var(--orange);flex-shrink:0}
+.progress-bar{height:6px;background:var(--bg4);border-radius:3px;overflow:hidden;margin-top:6px}
+.progress-fill{height:100%;border-radius:3px}
+.tabs{display:flex;gap:2px;background:var(--bg3);border-radius:var(--r);padding:3px;margin-bottom:16px}
+.tab{padding:6px 14px;border-radius:6px;font-size:13px;font-weight:500;cursor:pointer;color:var(--text2);transition:all .15s}
+.tab.active{background:var(--bg2);color:var(--text);box-shadow:0 1px 3px rgba(0,0,0,.3)}
+.call-item{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid rgba(46,58,85,.4)}
+.call-item:last-child{border-bottom:none}
+.call-icon{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.call-in{background:var(--green-bg);color:var(--green)}
+.call-out{background:var(--accent-glow);color:var(--accent)}
+.call-missed{background:var(--red-bg);color:var(--red)}
+.call-info{flex:1}
+.call-name{font-size:13px;font-weight:600}
+.call-detail{font-size:12px;color:var(--text2)}
+.call-dur{font-size:12px;color:var(--text3);text-align:right}
+.recording-player{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:12px;display:flex;align-items:center;gap:12px;margin-top:6px}
+.play-btn{width:32px;height:32px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0}
+.wave{flex:1;height:28px;display:flex;align-items:center;gap:1px}
+.wave-bar{width:3px;background:var(--border2);border-radius:1px;flex-shrink:0}
+.wave-bar.active{background:var(--accent)}
+.mini-chart{height:60px;display:flex;align-items:flex-end;gap:3px;margin-top:8px}
+.mini-bar{flex:1;background:var(--accent-glow);border-radius:2px 2px 0 0;min-width:6px}
+.mini-bar.hi{background:var(--accent)}
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(15,23,42,.38);z-index:100;align-items:center;justify-content:center}
+.modal-overlay.show{display:flex}
+.modal{background:var(--bg2);border:1px solid var(--border);border-radius:var(--card-r);width:520px;max-height:80vh;overflow-y:auto}
+.modal-head{padding:18px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.modal-title{font-size:15px;font-weight:600}
+.modal-body{padding:20px}
+.form-group{margin-bottom:14px}
+.form-label{font-size:12px;color:var(--text2);margin-bottom:5px;display:block;text-transform:uppercase;letter-spacing:.4px}
+.form-input{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:9px 12px;font-size:13px;color:var(--text);outline:none}
+.form-input:focus{border-color:var(--accent)}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+::-webkit-scrollbar{width:4px;height:4px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px}
+.page{display:none}
+.page.active{display:block}
+.notif{position:fixed;bottom:20px;right:20px;background:var(--bg2);border:1px solid var(--green);border-radius:var(--r);padding:12px 16px;font-size:13px;color:var(--text);display:flex;align-items:center;gap:8px;z-index:200;transform:translateY(100px);opacity:0;transition:all .3s}
+.notif.show{transform:translateY(0);opacity:1}
+.text-sm{font-size:12px;color:var(--text2)}
+/* Workflow styles */
+.wf-flow{display:flex;align-items:center;flex-wrap:wrap;gap:0;margin-bottom:16px;overflow-x:auto;padding-bottom:4px}
+.wf-node{display:flex;flex-direction:column;align-items:center;gap:6px;min-width:86px}
+.wf-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;border:2px solid transparent}
+.wf-icon.g{background:var(--green-bg);border-color:rgba(34,197,94,.3)}
+.wf-icon.b{background:var(--accent-glow);border-color:rgba(79,126,248,.3)}
+.wf-icon.o{background:var(--orange-bg);border-color:rgba(245,158,11,.3)}
+.wf-icon.p{background:var(--purple-bg);border-color:rgba(168,85,247,.3)}
+.wf-icon.c{background:var(--cyan-bg);border-color:rgba(6,182,212,.3)}
+.wf-icon.gr{background:var(--bg4);border-color:var(--border)}
+.wf-label{font-size:10px;color:var(--text2);text-align:center;max-width:80px;line-height:1.3}
+.wf-arrow{font-size:18px;color:var(--border2);padding-bottom:18px;flex-shrink:0}
+.bl{font-size:10px;padding:2px 6px;border-radius:4px;margin-right:4px;font-weight:600}
+.bl-y{background:var(--green-bg);color:var(--green)}
+.bl-n{background:var(--red-bg);color:var(--red)}
+</style>
+</head>
+<body>
+
+<aside class="sidebar">
+  <div class="logo">
+    <div class="logo-icon">&#x1F697;</div>
+    <div>
+      <div class="logo-text">DrivePak</div>
+      <div class="logo-sub">CRM Pro</div>
+    </div>
+  </div>
+  <nav class="nav">
+    <div class="nav-section">Main</div>
+    <div class="nav-item active" onclick="showPage('dashboard',this)"><i class="ti ti-dashboard"></i>Dashboard</div>
+    <div class="nav-item" onclick="showPage('chats',this)"><i class="ti ti-message-circle"></i>AI Chats <span class="nav-badge">5</span></div>
+    <div class="nav-item" onclick="showPage('bookings',this)"><i class="ti ti-calendar-check"></i>Bookings <span class="nav-badge green">12</span></div>
+    <div class="nav-item" onclick="showPage('calls',this)"><i class="ti ti-phone"></i>Call Logs</div>
+    <div class="nav-section">Inventory</div>
+    <div class="nav-item" onclick="showPage('cars',this)"><i class="ti ti-car"></i>Fleet</div>
+    <div class="nav-item" onclick="showPage('followups',this)"><i class="ti ti-clock"></i>Follow-ups <span class="nav-badge">3</span></div>
+    <div class="nav-section">System</div>
+    <div class="nav-item" onclick="showPage('workflow',this)"><i class="ti ti-sitemap"></i>n8n Workflow</div>
+    <div class="nav-item" onclick="showPage('agents',this)"><i class="ti ti-users"></i>Agents</div>
+    <div class="nav-item" onclick="showPage('reports',this)"><i class="ti ti-chart-bar"></i>Reports</div>
+  </nav>
+  <div class="sidebar-footer">
+    <div class="user-card">
+      <div class="avatar av-blue">RK</div>
+      <div>
+        <div style="font-size:13px;font-weight:600">Ahmed Khan</div>
+        <div style="font-size:11px;color:var(--text3)">Admin Manager</div>
+      </div>
+      <i class="ti ti-settings" style="margin-left:auto;color:var(--text3);font-size:16px"></i>
+    </div>
+  </div>
+</aside>
+
+<main class="main">
+  <div class="topbar">
+    <div class="page-title" id="page-title">Dashboard</div>
+    <div class="topbar-actions">
+      <div class="search-box"><i class="ti ti-search"></i><input placeholder="Search customers, bookings..."></div>
+      <button class="btn" onclick="showNotif('Refreshed!')"><i class="ti ti-refresh"></i></button>
+      <button class="btn primary" onclick="document.getElementById('newBookingModal').classList.add('show')"><i class="ti ti-plus"></i>New Booking</button>
+      <div class="avatar av-blue" style="cursor:pointer">RK</div>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <!-- DASHBOARD -->
+    <div class="page active" id="page-dashboard">
+      <div class="stats-row">
+        <div class="stat-card" style="border-color:var(--accent)">
+          <div class="stat-icon si-blue"><i class="ti ti-calendar-check"></i></div>
+          <div class="stat-label">Active Bookings</div>
+          <div class="stat-val blue">24</div>
+          <div class="stat-delta"><span>+4</span> from yesterday</div>
+        </div>
+        <div class="stat-card" style="border-color:var(--green)">
+          <div class="stat-icon si-green"><i class="ti ti-cash"></i></div>
+          <div class="stat-label">Revenue (July)</div>
+          <div class="stat-val green">PKR 4,82,500</div>
+          <div class="stat-delta"><span>+18.4%</span> vs last month</div>
+        </div>
+        <div class="stat-card" style="border-color:var(--orange)">
+          <div class="stat-icon si-orange"><i class="ti ti-car"></i></div>
+          <div class="stat-label">Cars Available</div>
+          <div class="stat-val orange">11/18</div>
+          <div class="stat-delta">7 currently on rent</div>
+        </div>
+        <div class="stat-card" style="border-color:var(--purple)">
+          <div class="stat-icon si-purple"><i class="ti ti-message-circle"></i></div>
+          <div class="stat-label">AI Conversions</div>
+          <div class="stat-val purple">68%</div>
+          <div class="stat-delta"><span>+12%</span> this week</div>
+        </div>
+      </div>
+
+      <div class="three-col">
+        <div class="panel">
+          <div class="panel-head">
+            <div class="panel-title"><i class="ti ti-activity" style="margin-right:6px;color:var(--accent)"></i>Live Activity Feed</div>
+            <span class="badge badge-green"><span class="dot"></span>Live</span>
+          </div>
+          <div class="panel-body">
+            <div class="timeline">
+              <div class="tl-item">
+                <div class="tl-dot av-green" style="font-size:14px">&#10003;</div>
+                <div class="tl-content">
+                  <div class="tl-title">Booking Confirmed — Ayesha Malik</div>
+                  <div class="tl-sub">Honda City &middot; 3 days &middot; PKR 54,000</div>
+                  <div class="tl-time">2 min ago &middot; WhatsApp AI</div>
+                </div>
+              </div>
+              <div class="tl-item">
+                <div class="tl-dot av-cyan" style="font-size:13px">&#128222;</div>
+                <div class="tl-content">
+                  <div class="tl-title">Inbound Call — Hamza Qureshi</div>
+                  <div class="tl-sub">Corolla Grande &middot; 7 min call &middot; 10% negotiated</div>
+                  <div class="tl-time">14 min ago &middot; Call Agent</div>
+                </div>
+              </div>
+              <div class="tl-item">
+                <div class="tl-dot av-orange" style="font-size:12px">PKR </div>
+                <div class="tl-content">
+                  <div class="tl-title">Payment Received — Fahad Ahmed</div>
+                  <div class="tl-sub">Advance PKR 20,000 &middot; Sportage booking</div>
+                  <div class="tl-time">42 min ago</div>
+                </div>
+              </div>
+              <div class="tl-item">
+                <div class="tl-dot av-blue" style="font-size:14px">&#128172;</div>
+                <div class="tl-content">
+                  <div class="tl-title">New WA Inquiry — Sana Iqbal</div>
+                  <div class="tl-sub">AI negotiating &middot; Swift &middot; 5 days</div>
+                  <div class="tl-time">1 hr ago &middot; In Progress</div>
+                </div>
+              </div>
+              <div class="tl-item">
+                <div class="tl-dot av-red" style="font-size:14px">&#10007;</div>
+                <div class="tl-content">
+                  <div class="tl-title">Booking Cancelled — Hira Shah</div>
+                  <div class="tl-sub">Yaris &middot; Refund initiated</div>
+                  <div class="tl-time">3 hr ago</div>
+                </div>
+              </div>
+              <div class="tl-item">
+                <div class="tl-dot av-green" style="font-size:14px">&#10003;</div>
+                <div class="tl-content">
+                  <div class="tl-title">Car Returned — Bilal Ahmed</div>
+                  <div class="tl-sub">Corolla Grande &middot; 5 days &middot; PKR 95,000 settled</div>
+                  <div class="tl-time">5 hr ago</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:16px">
+          <div class="panel">
+            <div class="panel-head"><div class="panel-title">Revenue Trend</div></div>
+            <div class="panel-body">
+              <div style="font-size:22px;font-weight:700;color:var(--green)">PKR 4,82,500</div>
+              <div style="font-size:12px;color:var(--text2);margin-top:2px">July 2026</div>
+              <div class="mini-chart" id="miniChart"></div>
+              <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text3);margin-top:4px">
+                <span>Wk1</span><span>Wk2</span><span>Wk3</span><span>Wk4</span><span>Now</span>
+              </div>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="panel-head"><div class="panel-title">Fleet Status</div></div>
+            <div class="panel-body">
+              <div style="margin-bottom:10px">
+                <div style="display:flex;justify-content:space-between;font-size:12px"><span>On Rent</span><span style="color:var(--accent);font-weight:600">7/18</span></div>
+                <div class="progress-bar"><div class="progress-fill" style="width:39%;background:var(--accent)"></div></div>
+              </div>
+              <div style="margin-bottom:10px">
+                <div style="display:flex;justify-content:space-between;font-size:12px"><span>Available</span><span style="color:var(--green);font-weight:600">11/18</span></div>
+                <div class="progress-bar"><div class="progress-fill" style="width:61%;background:var(--green)"></div></div>
+              </div>
+              <div>
+                <div style="display:flex;justify-content:space-between;font-size:12px"><span>In Service</span><span style="color:var(--orange);font-weight:600">2/18</span></div>
+                <div class="progress-bar"><div class="progress-fill" style="width:11%;background:var(--orange)"></div></div>
+              </div>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="panel-head"><div class="panel-title">AI Performance</div></div>
+            <div class="panel-body">
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+                <div style="text-align:center;padding:8px;background:var(--bg3);border-radius:var(--r)"><div style="font-size:20px;font-weight:700;color:var(--accent)">68%</div><div style="font-size:11px;color:var(--text3)">WA Conv.</div></div>
+                <div style="text-align:center;padding:8px;background:var(--bg3);border-radius:var(--r)"><div style="font-size:20px;font-weight:700;color:var(--purple)">54%</div><div style="font-size:11px;color:var(--text3)">Call Conv.</div></div>
+                <div style="text-align:center;padding:8px;background:var(--bg3);border-radius:var(--r)"><div style="font-size:20px;font-weight:700;color:var(--green)">127</div><div style="font-size:11px;color:var(--text3)">Chats Today</div></div>
+                <div style="text-align:center;padding:8px;background:var(--bg3);border-radius:var(--r)"><div style="font-size:20px;font-weight:700;color:var(--orange)">43</div><div style="font-size:11px;color:var(--text3)">Calls Today</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel full-col">
+        <div class="panel-head">
+          <div class="panel-title"><i class="ti ti-calendar" style="margin-right:6px;color:var(--accent)"></i>Recent Bookings</div>
+          <button class="btn" style="font-size:12px;padding:5px 10px" onclick="showPage('bookings',null)">View All</button>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Customer</th><th>Car</th><th>Dates</th><th>Amount</th><th>Source</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td><div style="font-weight:600">Ayesha Malik</div><div class="text-sm">+92 300 456 7890</div></td><td>&#127963; Honda City</td><td>01 Aug &ndash; 04 Aug</td><td>PKR 54,000</td><td><span class="badge badge-green">WhatsApp AI</span></td><td><span class="badge badge-blue">Confirmed</span></td></tr>
+              <tr><td><div style="font-weight:600">Hamza Qureshi</div><div class="text-sm">+92 321 654 9087</div></td><td>&#128665; Toyota Corolla Grande</td><td>03 Aug &ndash; 08 Aug</td><td>PKR 85,500</td><td><span class="badge badge-cyan">Phone Call</span></td><td><span class="badge badge-blue">Confirmed</span></td></tr>
+              <tr><td><div style="font-weight:600">Fahad Ahmed</div><div class="text-sm">+92 333 782 4510</div></td><td>&#127912; Kia Sportage</td><td>05 Aug &ndash; 07 Aug</td><td>PKR 1,20,000</td><td><span class="badge badge-green">WhatsApp AI</span></td><td><span class="badge badge-orange">Advance Paid</span></td></tr>
+              <tr><td><div style="font-weight:600">Zoya Hassan</div><div class="text-sm">+92 312 567 8432</div></td><td>&#128663; Toyota Yaris Cross</td><td>02 Aug &ndash; 05 Aug</td><td>PKR 64,800</td><td><span class="badge badge-green">WhatsApp AI</span></td><td><span class="badge badge-blue">Confirmed</span></td></tr>
+              <tr><td><div style="font-weight:600">Talha Nawaz</div><div class="text-sm">+92 301 845 6721</div></td><td>&#128664; Suzuki Swift</td><td>28 Jul &ndash; 01 Aug</td><td>PKR 48,000</td><td><span class="badge badge-cyan">Phone Call</span></td><td><span class="badge badge-green">Completed</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- CHATS PAGE -->
+    <div class="page" id="page-chats">
+      <div style="display:grid;grid-template-columns:300px 1fr;gap:16px;height:calc(100vh - 120px)">
+        <div class="panel" style="overflow:hidden;display:flex;flex-direction:column">
+          <div class="panel-head">
+            <div class="panel-title">WhatsApp Chats</div>
+            <span class="badge badge-green"><span class="dot"></span>Live</span>
+          </div>
+          <div class="chat-list" style="flex:1;overflow-y:auto">
+            <div class="chat-item active" onclick="selChat('priya',this)">
+              <div class="avatar av-purple">PS</div>
+              <div class="chat-meta"><div class="chat-name">Ayesha Malik <span class="chat-time">2m</span></div><div class="chat-preview">5 August ke liye Swift available hai?</div></div>
+              <div class="unread-dot"></div>
+            </div>
+            <div class="chat-item" onclick="selChat('arjun',this)">
+              <div class="avatar av-green">AM</div>
+              <div class="chat-meta"><div class="chat-name">Hamza Qureshi <span class="chat-time">14m</span></div><div class="chat-preview">PKR 18,000/day kam nahi ho sakta?</div></div>
+              <div class="unread-dot"></div>
+            </div>
+            <div class="chat-item" onclick="selChat('sunita',this)">
+              <div class="avatar av-orange">SN</div>
+              <div class="chat-meta"><div class="chat-name">Sana Iqbal <span class="chat-time">1h</span></div><div class="chat-preview">Thank you! Booking confirm ho gayi &#x2705;</div></div>
+            </div>
+            <div class="chat-item" onclick="selChat('rohit',this)">
+              <div class="avatar av-red">RD</div>
+              <div class="chat-meta"><div class="chat-name">Fahad Ahmed <span class="chat-time">3h</span></div><div class="chat-preview">Sportage 4WD chahiye wedding ke liye</div></div>
+            </div>
+            <div class="chat-item" onclick="selChat('meera',this)">
+              <div class="avatar av-cyan">MP</div>
+              <div class="chat-meta"><div class="chat-name">Zoya Hassan <span class="chat-time">4h</span></div><div class="chat-preview">Family trip ke liye Corolla Grande milegi?</div></div>
+              <div class="unread-dot"></div>
+            </div>
+          </div>
+        </div>
+        <div class="panel" style="overflow:hidden;display:flex;flex-direction:column">
+          <div class="msg-header">
+            <div class="avatar av-purple">PS</div>
+            <div style="flex:1"><div style="font-size:14px;font-weight:600">Ayesha Malik</div><div style="font-size:12px;color:var(--text2)">+92 300 456 7890 &middot; <span style="color:var(--green)">Online</span></div></div>
+            <span class="badge badge-blue">AI Active</span>
+            <button class="btn" style="margin-left:8px;font-size:12px"><i class="ti ti-phone"></i></button>
+          </div>
+          <div class="msg-body" id="msgBody">
+            <div class="msg-label">Today, 10:22 AM</div>
+            <div class="msg-bubble msg-in">Assalam o Alaikum, mujhe ek car chahiye 5 August ke liye &#x1F64F;</div>
+            <div class="msg-bubble msg-out ai">Assalam o Alaikum Ayesha! &#x1F60A; Main Ayla hoon DrivePak se.<br><br>5 August ke liye available:<br>&#x1F697; <b>Suzuki Swift</b> — PKR 12,000/day<br>&#127963; <b>Honda City</b> — PKR 18,000/day<br>&#128663; <b>Toyota Yaris Cross</b> — PKR 20,000/day<br><br>Kitne din ke liye chahiye?</div>
+            <div class="msg-bubble msg-in">Honda City... 3 din chalega?</div>
+            <div class="msg-bubble msg-out ai">Jee bilkul! Honda City 3 din:<br>&#x1F4B0; PKR 18,000 x 3 = <b>PKR 64,800</b><br>&#x1F512; Security Deposit: PKR 25,000<br><br>3+ days par 10% discount bhi! &#x1F389;</div>
+            <div class="msg-bubble msg-in">Haan please 10% discount chahiye!</div>
+            <div class="msg-bubble msg-out ai">Special offer! &#x1F381;<br><s>PKR 64,800</s> &rarr; <b>PKR 54,000</b> (10% off!)<br><br>5 Aug se 7 Aug — confirm karein?</div>
+            <div class="msg-bubble msg-in">Haan! Ayesha Malik, 10 AM pickup &#x2705;</div>
+            <div class="msg-bubble msg-out ai" style="border-color:var(--green)">&#x2705; <b>BOOKING CONFIRMED!</b><br><br>&#x1F464; Ayesha Malik &middot; &#127963; Honda City<br>&#x1F4C5; 5 Aug – 7 Aug 2026 &middot; &#x23F0; 10:00 AM<br>&#x1F4B0; PKR 54,000 &middot; &#x1F512; Deposit PKR 25,000<br><br>Google Calendar mein update ho gaya! &#x1F4C5;</div>
+            <div class="msg-label">Just now</div>
+            <div class="msg-bubble msg-in">Kya Swift bhi available hai friend ke liye?</div>
+            <div class="msg-bubble msg-out ai" style="border-color:var(--orange)">&#x23F3; AI typing...</div>
+          </div>
+          <div class="msg-footer">
+            <input class="msg-input" placeholder="Override AI response..." id="msgInput" onkeydown="if(event.key==='Enter')sendMsg()">
+            <button class="btn primary" onclick="sendMsg()"><i class="ti ti-send"></i></button>
+            <button class="btn" onclick="showNotif('Human takeover enabled')"><i class="ti ti-user"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BOOKINGS -->
+    <div class="page" id="page-bookings">
+      <div class="tabs">
+        <div class="tab active" onclick="filterBk('all',this)">All (24)</div>
+        <div class="tab" onclick="filterBk('confirmed',this)">Confirmed (18)</div>
+        <div class="tab" onclick="filterBk('active',this)">On Rent (7)</div>
+        <div class="tab" onclick="filterBk('completed',this)">Completed (32)</div>
+        <div class="tab" onclick="filterBk('cancelled',this)">Cancelled (5)</div>
+      </div>
+      <div class="panel">
+        <div class="panel-head">
+          <div class="panel-title">Booking Records</div>
+          <div style="display:flex;gap:8px">
+            <button class="btn" style="font-size:12px"><i class="ti ti-filter"></i>Filter</button>
+            <button class="btn" style="font-size:12px" onclick="showNotif('Export started!')"><i class="ti ti-download"></i>Export</button>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table id="bkTable">
+            <thead><tr><th>ID</th><th>Customer</th><th>Car</th><th>Start</th><th>End</th><th>Days</th><th>Amount</th><th>Disc.</th><th>Source</th><th>Status</th><th>Action</th></tr></thead>
+            <tbody>
+              <tr data-s="confirmed"><td><span style="color:var(--accent);font-weight:600">#BK-2047</span></td><td><div style="font-weight:600">Ayesha Malik</div><div class="text-sm">+92 300 456 7890</div></td><td>Honda City</td><td>01 Aug</td><td>04 Aug</td><td>3</td><td>PKR 54,000</td><td><span class="badge badge-green">10%</span></td><td><span class="badge badge-green">WA AI</span></td><td><span class="badge badge-blue">Confirmed</span></td><td><button class="btn" style="font-size:11px;padding:4px 8px" onclick="showNotif('#BK-2047 opened')">View</button></td></tr>
+              <tr data-s="confirmed"><td><span style="color:var(--accent);font-weight:600">#BK-2046</span></td><td><div style="font-weight:600">Hamza Qureshi</div><div class="text-sm">+92 321 654 9087</div></td><td>Toyota Corolla Grande</td><td>03 Aug</td><td>08 Aug</td><td>5</td><td>PKR 85,500</td><td><span class="badge badge-green">10%</span></td><td><span class="badge badge-cyan">Call</span></td><td><span class="badge badge-blue">Confirmed</span></td><td><button class="btn" style="font-size:11px;padding:4px 8px">View</button></td></tr>
+              <tr data-s="active"><td><span style="color:var(--accent);font-weight:600">#BK-2045</span></td><td><div style="font-weight:600">Fahad Ahmed</div><div class="text-sm">+92 333 782 4510</div></td><td>Kia Sportage</td><td>05 Aug</td><td>07 Aug</td><td>2</td><td>PKR 1,20,000</td><td><span class="badge badge-gray">No</span></td><td><span class="badge badge-green">WA AI</span></td><td><span class="badge badge-orange">On Rent</span></td><td><button class="btn" style="font-size:11px;padding:4px 8px">View</button></td></tr>
+              <tr data-s="confirmed"><td><span style="color:var(--accent);font-weight:600">#BK-2044</span></td><td><div style="font-weight:600">Zoya Hassan</div><div class="text-sm">+92 312 567 8432</div></td><td>Toyota Yaris Cross</td><td>02 Aug</td><td>05 Aug</td><td>3</td><td>PKR 64,800</td><td><span class="badge badge-gray">No</span></td><td><span class="badge badge-green">WA AI</span></td><td><span class="badge badge-blue">Confirmed</span></td><td><button class="btn" style="font-size:11px;padding:4px 8px">View</button></td></tr>
+              <tr data-s="completed"><td><span style="color:var(--accent);font-weight:600">#BK-2043</span></td><td><div style="font-weight:600">Talha Nawaz</div><div class="text-sm">+92 301 845 6721</div></td><td>Suzuki Swift</td><td>28 Jul</td><td>01 Aug</td><td>4</td><td>PKR 48,000</td><td><span class="badge badge-gray">No</span></td><td><span class="badge badge-cyan">Call</span></td><td><span class="badge badge-green">Completed</span></td><td><button class="btn" style="font-size:11px;padding:4px 8px">View</button></td></tr>
+              <tr data-s="active"><td><span style="color:var(--accent);font-weight:600">#BK-2042</span></td><td><div style="font-weight:600">Sana Iqbal</div><div class="text-sm">+92 315 294 7816</div></td><td>Suzuki Swift</td><td>30 Jul</td><td>04 Aug</td><td>5</td><td>PKR 64,800</td><td><span class="badge badge-green">10%</span></td><td><span class="badge badge-green">WA AI</span></td><td><span class="badge badge-orange">On Rent</span></td><td><button class="btn" style="font-size:11px;padding:4px 8px">View</button></td></tr>
+              <tr data-s="cancelled"><td><span style="color:var(--accent);font-weight:600">#BK-2041</span></td><td><div style="font-weight:600">Hira Shah</div><div class="text-sm">+92 304 638 2917</div></td><td>Honda City</td><td>01 Aug</td><td>03 Aug</td><td>2</td><td>PKR 3,600</td><td><span class="badge badge-gray">No</span></td><td><span class="badge badge-cyan">Call</span></td><td><span class="badge badge-red">Cancelled</span></td><td><button class="btn" style="font-size:11px;padding:4px 8px">View</button></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- CALLS -->
+    <div class="page" id="page-calls">
+      <div class="two-col">
+        <div class="panel">
+          <div class="panel-head">
+            <div class="panel-title"><i class="ti ti-phone" style="margin-right:6px;color:var(--accent)"></i>Call Recordings</div>
+            <span class="badge badge-blue">Today: 43</span>
+          </div>
+          <div class="panel-body">
+            <div class="call-item">
+              <div class="call-icon call-in"><i class="ti ti-phone-incoming"></i></div>
+              <div class="call-info">
+                <div class="call-name">Hamza Qureshi &middot; +92 321 654 9087</div>
+                <div class="call-detail">Inquired about Corolla Grande &middot; Booking confirmed &middot; PKR 85,500</div>
+                <div class="recording-player"><div class="play-btn" onclick="showNotif('Playing...')"><i class="ti ti-player-play" style="color:#fff;font-size:14px"></i></div><div class="wave" id="w1"></div><span style="font-size:11px;color:var(--text3);min-width:35px">7:23</span></div>
+              </div>
+              <div class="call-dur"><div style="font-weight:600">7:23</div><div style="font-size:11px;color:var(--text3)">10:45 AM</div><span class="badge badge-green" style="margin-top:4px">Converted</span></div>
+            </div>
+            <div class="call-item">
+              <div class="call-icon call-missed"><i class="ti ti-phone-off"></i></div>
+              <div class="call-info"><div class="call-name">Unknown &middot; +92 300 998 6655</div><div class="call-detail">Missed call &middot; Auto-callback scheduled</div></div>
+              <div class="call-dur"><div style="font-weight:600">0:00</div><div style="font-size:11px;color:var(--text3)">10:12 AM</div><span class="badge badge-red" style="margin-top:4px">Missed</span></div>
+            </div>
+            <div class="call-item">
+              <div class="call-icon call-in"><i class="ti ti-phone-incoming"></i></div>
+              <div class="call-info">
+                <div class="call-name">Bilal Ahmed &middot; +92 306 451 8293</div>
+                <div class="call-detail">Swift inquiry &middot; Price negotiated</div>
+                <div class="recording-player"><div class="play-btn" onclick="showNotif('Playing...')"><i class="ti ti-player-play" style="color:#fff;font-size:14px"></i></div><div class="wave" id="w2"></div><span style="font-size:11px;color:var(--text3);min-width:35px">4:11</span></div>
+              </div>
+              <div class="call-dur"><div style="font-weight:600">4:11</div><div style="font-size:11px;color:var(--text3)">9:33 AM</div><span class="badge badge-orange" style="margin-top:4px">Follow-up</span></div>
+            </div>
+            <div class="call-item">
+              <div class="call-icon call-out"><i class="ti ti-phone-outgoing"></i></div>
+              <div class="call-info">
+                <div class="call-name">Sana Iqbal &middot; +92 322 719 5046</div>
+                <div class="call-detail">Outbound follow-up &middot; Confirmed Yaris</div>
+                <div class="recording-player"><div class="play-btn" onclick="showNotif('Playing...')"><i class="ti ti-player-play" style="color:#fff;font-size:14px"></i></div><div class="wave" id="w3"></div><span style="font-size:11px;color:var(--text3);min-width:35px">3:47</span></div>
+              </div>
+              <div class="call-dur"><div style="font-weight:600">3:47</div><div style="font-size:11px;color:var(--text3)">9:05 AM</div><span class="badge badge-green" style="margin-top:4px">Converted</span></div>
+            </div>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:16px">
+          <div class="panel">
+            <div class="panel-head"><div class="panel-title">Call Analytics</div></div>
+            <div class="panel-body">
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px">
+                <div style="background:var(--green-bg);border-radius:var(--r);padding:12px;text-align:center"><div style="font-size:22px;font-weight:700;color:var(--green)">28</div><div style="font-size:11px;color:var(--text2)">Inbound</div></div>
+                <div style="background:var(--accent-glow);border-radius:var(--r);padding:12px;text-align:center"><div style="font-size:22px;font-weight:700;color:var(--accent)">12</div><div style="font-size:11px;color:var(--text2)">Outbound</div></div>
+                <div style="background:var(--red-bg);border-radius:var(--r);padding:12px;text-align:center"><div style="font-size:22px;font-weight:700;color:var(--red)">3</div><div style="font-size:11px;color:var(--text2)">Missed</div></div>
+                <div style="background:var(--orange-bg);border-radius:var(--r);padding:12px;text-align:center"><div style="font-size:18px;font-weight:700;color:var(--orange)">5m34s</div><div style="font-size:11px;color:var(--text2)">Avg Duration</div></div>
+              </div>
+              <div style="font-size:12px;color:var(--text2);margin-bottom:6px">Today's conversion rate</div>
+              <div class="progress-bar" style="height:10px"><div class="progress-fill" style="width:54%;background:var(--green)"></div></div>
+              <div style="font-size:13px;font-weight:700;color:var(--green);margin-top:4px">54% — 23 of 43</div>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="panel-head"><div class="panel-title">AI Call Transcript</div><span class="badge badge-purple">Hamza Qureshi</span></div>
+            <div class="panel-body" style="max-height:280px;overflow-y:auto">
+              <div style="display:flex;flex-direction:column;gap:8px;font-size:12px">
+                <div style="background:var(--bg3);border-radius:var(--r);padding:8px 12px"><span style="color:var(--accent);font-weight:600">Ayla: </span>Hello! DrivePak Car Rental Service, main Ayla bol rahi hoon. Kaise madad karoon?</div>
+                <div style="background:var(--bg4);border-radius:var(--r);padding:8px 12px"><span style="color:var(--orange);font-weight:600">Hamza: </span>Mujhe Corolla Grande chahiye 3 August se 5 din ke liye</div>
+                <div style="background:var(--bg3);border-radius:var(--r);padding:8px 12px"><span style="color:var(--accent);font-weight:600">Ayla: </span>Toyota Corolla Grande available hai! PKR 20,000/day, 5 din = PKR 95,000. 7 seater diesel!</div>
+                <div style="background:var(--bg4);border-radius:var(--r);padding:8px 12px"><span style="color:var(--orange);font-weight:600">Hamza: </span>Thoda kam nahi hoga? Family trip hai</div>
+                <div style="background:var(--bg3);border-radius:var(--r);padding:8px 12px"><span style="color:var(--accent);font-weight:600">Ayla: </span>5 din special discount — sirf PKR 85,500! (10% off). Confirm kar dein?</div>
+                <div style="background:var(--bg4);border-radius:var(--r);padding:8px 12px"><span style="color:var(--orange);font-weight:600">Hamza: </span>Jee bilkul! Hamza Qureshi hai mera naam</div>
+                <div style="background:var(--green-bg);border:1px solid var(--green);border-radius:var(--r);padding:8px 12px"><span style="color:var(--green);font-weight:600">&#x2705; BOOKING CONFIRMED — PKR 85,500 &middot; Calendar Updated</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FLEET -->
+    <div class="page" id="page-cars">
+      <div class="stats-row" style="grid-template-columns:repeat(5,1fr)">
+        <div class="stat-card" style="border-color:var(--green)"><div class="stat-label">Available</div><div class="stat-val green">11</div></div>
+        <div class="stat-card" style="border-color:var(--accent)"><div class="stat-label">On Rent</div><div class="stat-val blue">7</div></div>
+        <div class="stat-card" style="border-color:var(--orange)"><div class="stat-label">In Service</div><div class="stat-val orange">2</div></div>
+        <div class="stat-card" style="border-color:var(--purple)"><div class="stat-label">Total Fleet</div><div class="stat-val purple">18</div></div>
+        <div class="stat-card" style="border-color:var(--cyan)"><div class="stat-label">Utilization</div><div class="stat-val" style="color:var(--cyan)">50%</div></div>
+      </div>
+      <div class="car-grid">
+        <div class="car-card" onclick="showNotif('Swift #ICT-01-AB-1234')"><div class="car-img">&#128664;</div><div class="car-info"><div class="car-name">Suzuki Swift 2023</div><div style="font-size:11px;color:var(--text2);margin-bottom:6px">ICT-01-AB-1234 &middot; Petrol</div><div class="car-price">PKR 1,200<span>/day</span></div><div class="car-tags"><span class="tag">5 Seats</span><span class="tag">AC</span><span class="tag">City</span></div><span class="badge badge-green" style="margin-top:8px"><span class="dot"></span>Available</span></div></div>
+        <div class="car-card rented" onclick="showNotif('Honda City — On Rent')"><div class="car-img">&#127963;</div><div class="car-info"><div class="car-name">Honda City 2023</div><div style="font-size:11px;color:var(--text2);margin-bottom:6px">LHE-02-CD-5678 &middot; Petrol</div><div class="car-price">PKR 1,800<span>/day</span></div><div class="car-tags"><span class="tag">5 Seats</span><span class="tag">AC</span><span class="tag">Sedan</span></div><span class="badge badge-orange" style="margin-top:8px">On Rent</span></div></div>
+        <div class="car-card rented" onclick="showNotif('Toyota Corolla Grande — On Rent')"><div class="car-img">&#128665;</div><div class="car-info"><div class="car-name">Toyota Corolla Grande 2022</div><div style="font-size:11px;color:var(--text2);margin-bottom:6px">KHI-03-EF-9012 &middot; Diesel</div><div class="car-price">PKR 2,500<span>/day</span></div><div class="car-tags"><span class="tag">7 Seats</span><span class="tag">AC</span><span class="tag">Family</span></div><span class="badge badge-orange" style="margin-top:8px">On Rent</span></div></div>
+        <div class="car-card" onclick="showNotif('Sportage #RWP-04-GH-3456')"><div class="car-img">&#127912;</div><div class="car-info"><div class="car-name">Kia Sportage 2023</div><div style="font-size:11px;color:var(--text2);margin-bottom:6px">RWP-04-GH-3456 &middot; Diesel</div><div class="car-price">PKR 3,000<span>/day</span></div><div class="car-tags"><span class="tag">4 Seats</span><span class="tag">4WD</span><span class="tag">Adventure</span></div><span class="badge badge-green" style="margin-top:8px"><span class="dot"></span>Available</span></div></div>
+        <div class="car-card rented" onclick="showNotif('Yaris — On Rent')"><div class="car-img">&#128663;</div><div class="car-info"><div class="car-name">Toyota Yaris Cross 2023</div><div style="font-size:11px;color:var(--text2);margin-bottom:6px">ISB-05-IJ-7890 &middot; Petrol</div><div class="car-price">PKR 2,000<span>/day</span></div><div class="car-tags"><span class="tag">5 Seats</span><span class="tag">SUV</span><span class="tag">AC</span></div><span class="badge badge-orange" style="margin-top:8px">On Rent</span></div></div>
+        <div class="car-card" onclick="showNotif('Toyota Fortuner #LHE-06-KL-1234')"><div class="car-img">&#127942;</div><div class="car-info"><div class="car-name">Toyota Fortuner 2022</div><div style="font-size:11px;color:var(--text2);margin-bottom:6px">LHE-06-KL-1234 &middot; Diesel</div><div class="car-price">PKR 4,500<span>/day</span></div><div class="car-tags"><span class="tag">7 Seats</span><span class="tag">4WD</span><span class="tag">Premium</span></div><span class="badge badge-green" style="margin-top:8px"><span class="dot"></span>Available</span></div></div>
+        <div class="car-card" onclick="showNotif('Toyota Corolla #KHI-07-MN-5678')"><div class="car-img">&#128652;</div><div class="car-info"><div class="car-name">Toyota Corolla 2023</div><div style="font-size:11px;color:var(--text2);margin-bottom:6px">KHI-07-MN-5678 &middot; CNG</div><div class="car-price">PKR 1,500<span>/day</span></div><div class="car-tags"><span class="tag">7 Seats</span><span class="tag">CNG</span><span class="tag">Family</span></div><span class="badge badge-green" style="margin-top:8px"><span class="dot"></span>Available</span></div></div>
+        <div class="car-card" onclick="showNotif('Kia Sorento — In Service')"><div class="car-img">&#128295;</div><div class="car-info"><div class="car-name">Kia Sorento</div><div style="font-size:11px;color:var(--text2);margin-bottom:6px">RWP-08-OP-9012 &middot; Diesel</div><div class="car-price">PKR 3,500<span>/day</span></div><div class="car-tags"><span class="tag">7 Seats</span><span class="tag">AWD</span></div><span class="badge badge-gray" style="margin-top:8px">In Service</span></div></div>
+      </div>
+    </div>
+
+    <!-- FOLLOW-UPS -->
+    <div class="page" id="page-followups">
+      <div class="two-col">
+        <div class="panel">
+          <div class="panel-head">
+            <div class="panel-title"><i class="ti ti-clock" style="margin-right:6px;color:var(--orange)"></i>Pending Follow-ups</div>
+            <span class="badge badge-orange">3 Overdue</span>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Customer</th><th>Last Contact</th><th>Interest</th><th>Priority</th><th>Action</th></tr></thead>
+              <tbody>
+                <tr><td><div style="font-weight:600">Saad Hassan</div><div class="text-sm">+92 311 628 4509</div></td><td style="color:var(--red)">2 days ago</td><td>Corolla Grande &middot; Wedding &middot; 7 days</td><td><span class="badge badge-red">&#x1F525; High</span></td><td><button class="btn primary" style="font-size:11px;padding:4px 10px" onclick="showNotif('Calling Saad...')"><i class="ti ti-phone"></i>Call</button></td></tr>
+                <tr><td><div style="font-weight:600">Iqra Javed</div><div class="text-sm">+92 320 573 1946</div></td><td style="color:var(--orange)">1 day ago</td><td>Swift &middot; Outstation &middot; 3 days</td><td><span class="badge badge-orange">&#x26A1; Medium</span></td><td><button class="btn" style="font-size:11px;padding:4px 10px" onclick="showNotif('WA sent to Iqra')"><i class="ti ti-brand-whatsapp"></i>WA</button></td></tr>
+                <tr><td><div style="font-weight:600">Usman Ali</div><div class="text-sm">+92 335 742 6081</div></td><td style="color:var(--orange)">1 day ago</td><td>Toyota Fortuner &middot; Corporate &middot; 10 days</td><td><span class="badge badge-red">&#x1F525; High</span></td><td><button class="btn primary" style="font-size:11px;padding:4px 10px" onclick="showNotif('Calling Usman...')"><i class="ti ti-phone"></i>Call</button></td></tr>
+                <tr><td><div style="font-weight:600">Maham Raza</div><div class="text-sm">+92 336 814 2759</div></td><td style="color:var(--green)">Today</td><td>Yaris &middot; City &middot; 2 days</td><td><span class="badge badge-blue">&#x1F4CB; Normal</span></td><td><button class="btn" style="font-size:11px;padding:4px 10px" onclick="showNotif('Reminder set')"><i class="ti ti-bell"></i>Remind</button></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-head"><div class="panel-title">August 2026 Calendar</div></div>
+          <div class="panel-body">
+            <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:4px;text-align:center;font-size:11px;margin-bottom:8px">
+              <span style="color:var(--text3)">S</span><span style="color:var(--text3)">M</span><span style="color:var(--text3)">T</span><span style="color:var(--text3)">W</span><span style="color:var(--text3)">T</span><span style="color:var(--text3)">F</span><span style="color:var(--text3)">S</span>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:4px;text-align:center" id="calGrid"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- N8N WORKFLOW -->
+    <div class="page" id="page-workflow">
+      <div class="panel" style="margin-bottom:16px">
+        <div class="panel-head">
+          <div class="panel-title">&#x1F4CA; n8n Workflow — Car Rental WhatsApp + Call AI Automation</div>
+          <span class="badge badge-green"><span class="dot"></span>Active</span>
+        </div>
+        <div class="panel-body">
+          <div style="background:var(--bg3);border-radius:var(--r);padding:16px;margin-bottom:20px;border-left:3px solid var(--accent)">
+            <div style="font-size:13px;font-weight:600;margin-bottom:6px">"Car Rental — WhatsApp AI Agent + Call Agent Automation"</div>
+            <div style="font-size:12px;color:var(--text2)">2 Webhook Triggers &middot; AI Agent "Ayla" &middot; GPT-4o Mini &middot; Google Calendar &middot; Twilio Voice &middot; PKT Timezone</div>
+            <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap">
+              <span class="badge badge-green">2 Webhooks</span><span class="badge badge-blue">2 AI Agents</span><span class="badge badge-purple">GPT-4o Mini</span><span class="badge badge-cyan">Google Calendar</span><span class="badge badge-orange">Twilio</span><span class="badge badge-gray">contextWindow: 20</span>
+            </div>
+          </div>
+
+          <!-- WA Flow -->
+          <div style="margin-bottom:28px">
+            <div style="font-size:13px;font-weight:700;color:var(--green);margin-bottom:14px"><span style="background:var(--green-bg);padding:4px 10px;border-radius:20px;border:1px solid rgba(34,197,94,.3)">&#x1F4F1; WhatsApp Flow</span></div>
+            <div class="wf-flow">
+              <div class="wf-node"><div class="wf-icon g">&#x1F4E5;</div><div class="wf-label">WA Webhook Trigger</div></div>
+              <div class="wf-arrow">&rarr;</div>
+              <div class="wf-node"><div class="wf-icon o">&#x1F500;</div><div class="wf-label">Check Message Type</div></div>
+              <div class="wf-arrow">&rarr;</div>
+              <div class="wf-node"><div class="wf-icon b">&#x1F4CB;</div><div class="wf-label">Extract WA Data</div></div>
+              <div class="wf-arrow">&rarr;</div>
+              <div class="wf-node"><div class="wf-icon p">&#x1F916;</div><div class="wf-label">AI Agent "Ayla" + Memory</div></div>
+              <div class="wf-arrow">&rarr;</div>
+              <div class="wf-node"><div class="wf-icon o">&#x1F500;</div><div class="wf-label">Booking Confirmed?</div></div>
+            </div>
+            <div style="margin-left:100px">
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
+                <span class="bl bl-y">YES</span>
+                <div class="wf-flow" style="margin-bottom:0">
+                  <div class="wf-node"><div class="wf-icon b" style="width:40px;height:40px;font-size:16px">&#x1F50D;</div><div class="wf-label" style="font-size:9px">Extract Booking Details</div></div>
+                  <div class="wf-arrow" style="font-size:14px;padding-bottom:14px">&rarr;</div>
+                  <div class="wf-node"><div class="wf-icon c" style="width:40px;height:40px;font-size:16px">&#x1F4C5;</div><div class="wf-label" style="font-size:9px">Add to Google Calendar</div></div>
+                  <div class="wf-arrow" style="font-size:14px;padding-bottom:14px">&rarr;</div>
+                  <div class="wf-node"><div class="wf-icon b" style="width:40px;height:40px;font-size:16px">&#x1F4AC;</div><div class="wf-label" style="font-size:9px">Prepare Confirmation</div></div>
+                  <div class="wf-arrow" style="font-size:14px;padding-bottom:14px">&rarr;</div>
+                  <div class="wf-node"><div class="wf-icon g" style="width:40px;height:40px;font-size:16px">&#x1F4E4;</div><div class="wf-label" style="font-size:9px">Send Booking WA</div></div>
+                </div>
+              </div>
+              <div style="display:flex;align-items:center;gap:8px">
+                <span class="bl bl-n">NO</span>
+                <div class="wf-flow" style="margin-bottom:0">
+                  <div class="wf-node"><div class="wf-icon b" style="width:40px;height:40px;font-size:16px">&#x1F4AC;</div><div class="wf-label" style="font-size:9px">Prepare Chat Response</div></div>
+                  <div class="wf-arrow" style="font-size:14px;padding-bottom:14px">&rarr;</div>
+                  <div class="wf-node"><div class="wf-icon g" style="width:40px;height:40px;font-size:16px">&#x1F4E4;</div><div class="wf-label" style="font-size:9px">Send WA Reply</div></div>
+                  <div class="wf-arrow" style="font-size:14px;padding-bottom:14px">&rarr;</div>
+                  <div class="wf-node"><div class="wf-icon gr" style="width:40px;height:40px;font-size:16px">&#x2705;</div><div class="wf-label" style="font-size:9px">Webhook Response OK</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Call Flow -->
+          <div style="padding-top:20px;border-top:1px solid var(--border)">
+            <div style="font-size:13px;font-weight:700;color:var(--cyan);margin-bottom:14px"><span style="background:var(--cyan-bg);padding:4px 10px;border-radius:20px;border:1px solid rgba(6,182,212,.3)">&#x1F4DE; Call Agent Flow (Twilio)</span></div>
+            <div class="wf-flow">
+              <div class="wf-node"><div class="wf-icon c">&#x1F4DE;</div><div class="wf-label">Inbound Call Webhook</div></div>
+              <div class="wf-arrow">&rarr;</div>
+              <div class="wf-node"><div class="wf-icon b">&#x1F4CB;</div><div class="wf-label">Extract Call Data</div></div>
+              <div class="wf-arrow">&rarr;</div>
+              <div class="wf-node"><div class="wf-icon p">&#x1F916;</div><div class="wf-label">AI Call Agent "Ayla"</div></div>
+              <div class="wf-arrow">&rarr;</div>
+              <div class="wf-node"><div class="wf-icon o">&#x1F500;</div><div class="wf-label">Call Booking Confirmed?</div></div>
+            </div>
+            <div style="margin-left:100px">
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
+                <span class="bl bl-y">YES</span>
+                <div class="wf-flow" style="margin-bottom:0">
+                  <div class="wf-node"><div class="wf-icon b" style="width:40px;height:40px;font-size:16px">&#x1F50D;</div><div class="wf-label" style="font-size:9px">Extract Call Booking</div></div>
+                  <div class="wf-arrow" style="font-size:14px;padding-bottom:14px">&rarr;</div>
+                  <div class="wf-node"><div class="wf-icon c" style="width:40px;height:40px;font-size:16px">&#x1F4C5;</div><div class="wf-label" style="font-size:9px">Add to Calendar</div></div>
+                  <div class="wf-arrow" style="font-size:14px;padding-bottom:14px">&rarr;</div>
+                  <div class="wf-node"><div class="wf-icon g" style="width:40px;height:40px;font-size:16px">&#x1F4F1;</div><div class="wf-label" style="font-size:9px">Send WA Confirmation After Call</div></div>
+                </div>
+              </div>
+              <div style="display:flex;align-items:center;gap:8px">
+                <span class="bl bl-n">NO</span>
+                <div class="wf-flow" style="margin-bottom:0">
+                  <div class="wf-node"><div class="wf-icon c" style="width:40px;height:40px;font-size:16px">&#x1F50A;</div><div class="wf-label" style="font-size:9px">Generate TwiML Response</div></div>
+                  <div class="wf-arrow" style="font-size:14px;padding-bottom:14px">&rarr;</div>
+                  <div class="wf-node"><div class="wf-icon gr" style="width:40px;height:40px;font-size:16px">&#x2705;</div><div class="wf-label" style="font-size:9px">Call Webhook Response</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Node Details -->
+          <div style="margin-top:28px;padding-top:20px;border-top:1px solid var(--border)">
+            <div style="font-size:12px;font-weight:600;color:var(--text2);margin-bottom:12px;text-transform:uppercase;letter-spacing:.5px">Node Details from JSON</div>
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;font-size:12px">
+              <div style="background:var(--bg3);border-radius:var(--r);padding:12px">
+                <div style="font-weight:600;margin-bottom:6px;color:var(--purple)">&#x1F916; AI Agent (Ayla)</div>
+                <div style="color:var(--text2);line-height:1.8">Model: GPT-4o Mini<br>Temperature: 0.7 / Max: 1024<br>Memory: Buffer 20 turns<br>Session key: phone number<br>Discount: up to 15%<br>Language: Hinglish</div>
+              </div>
+              <div style="background:var(--bg3);border-radius:var(--r);padding:12px">
+                <div style="font-weight:600;margin-bottom:6px;color:var(--cyan)">&#x1F4C5; Google Calendar</div>
+                <div style="color:var(--text2);line-height:1.8">Calendar: Primary<br>Color ID: 9 (Grape)<br>Reminder: Email 24h before<br>Reminder: Popup 1h before<br>Location: Car Rental Office<br>Booking: Start T10:00 – End T20:00</div>
+              </div>
+              <div style="background:var(--bg3);border-radius:var(--r);padding:12px">
+                <div style="font-weight:600;margin-bottom:6px;color:var(--green)">&#x1F4F1; WhatsApp API</div>
+                <div style="color:var(--text2);line-height:1.8">Path: /whatsapp-webhook<br>Filter: text messages only<br>Extracts: from, text, name, id<br>Confirmation: booking summary<br>Format: BOOKING CONFIRMED | Car | Dates | Amount</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AGENTS -->
+    <div class="page" id="page-agents">
+      <div class="two-col">
+        <div class="panel">
+          <div class="panel-head"><div class="panel-title"><i class="ti ti-users" style="margin-right:6px;color:var(--accent)"></i>Team Agents</div></div>
+          <div class="panel-body">
+            <div class="agent-item">
+              <div class="avatar av-blue" style="width:42px;height:42px;font-size:15px">RI</div>
+              <div class="agent-info"><div class="agent-name">Ayla (AI Agent) &#x1F916;</div><div class="agent-role">WhatsApp + Call AI &middot; 24/7</div></div>
+              <div class="agent-stats"><div class="agent-stat"><div class="agent-stat-val">127</div><div class="agent-stat-lbl">Chats</div></div><div class="agent-stat"><div class="agent-stat-val" style="color:var(--green)">68%</div><div class="agent-stat-lbl">Conv.</div></div><div class="agent-stat"><div class="agent-stat-val" style="color:var(--orange)">43</div><div class="agent-stat-lbl">Calls</div></div></div>
+              <div class="online"></div>
+            </div>
+            <div class="agent-item">
+              <div class="avatar av-purple" style="width:42px;height:42px;font-size:15px">SK</div>
+              <div class="agent-info"><div class="agent-name">Saad Ali</div><div class="agent-role">Senior Sales &middot; Lahore</div></div>
+              <div class="agent-stats"><div class="agent-stat"><div class="agent-stat-val">34</div><div class="agent-stat-lbl">Calls</div></div><div class="agent-stat"><div class="agent-stat-val" style="color:var(--green)">76%</div><div class="agent-stat-lbl">Conv.</div></div><div class="agent-stat"><div class="agent-stat-val" style="color:var(--accent)">PKR 189K</div><div class="agent-stat-lbl">Rev.</div></div></div>
+              <div class="online"></div>
+            </div>
+            <div class="agent-item">
+              <div class="avatar av-orange" style="width:42px;height:42px;font-size:15px">AM</div>
+              <div class="agent-info"><div class="agent-name">Maryam Raza</div><div class="agent-role">Sales &middot; Follow-up Specialist</div></div>
+              <div class="agent-stats"><div class="agent-stat"><div class="agent-stat-val">28</div><div class="agent-stat-lbl">Calls</div></div><div class="agent-stat"><div class="agent-stat-val" style="color:var(--green)">64%</div><div class="agent-stat-lbl">Conv.</div></div><div class="agent-stat"><div class="agent-stat-val" style="color:var(--accent)">PKR 142K</div><div class="agent-stat-lbl">Rev.</div></div></div>
+              <div class="busy"></div>
+            </div>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-head"><div class="panel-title">Revenue by Agent</div></div>
+          <div class="panel-body">
+            <div style="display:flex;flex-direction:column;gap:14px">
+              <div><div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px"><span>Ayla (AI)</span><span style="color:var(--accent);font-weight:600">PKR 3,10,000</span></div><div class="progress-bar"><div class="progress-fill" style="width:88%;background:var(--accent)"></div></div></div>
+              <div><div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px"><span>Saad Ali</span><span style="color:var(--green);font-weight:600">PKR 89,000</span></div><div class="progress-bar"><div class="progress-fill" style="width:62%;background:var(--green)"></div></div></div>
+              <div><div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px"><span>Maryam Raza</span><span style="color:var(--orange);font-weight:600">PKR 67,000</span></div><div class="progress-bar"><div class="progress-fill" style="width:48%;background:var(--orange)"></div></div></div>
+            </div>
+            <div style="background:var(--bg3);border-radius:var(--r);padding:12px;margin-top:16px">
+              <div style="font-size:12px;color:var(--text2);margin-bottom:8px">&#x1F916; AI vs Human</div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:12px">
+                <div style="text-align:center;padding:8px;background:var(--accent-glow);border-radius:6px"><div style="font-size:18px;font-weight:700;color:var(--accent)">68%</div><div style="color:var(--text2)">AI Conv.</div></div>
+                <div style="text-align:center;padding:8px;background:var(--green-bg);border-radius:6px"><div style="font-size:18px;font-weight:700;color:var(--green)">70%</div><div style="color:var(--text2)">Human Conv.</div></div>
+                <div style="text-align:center;padding:8px;background:var(--bg4);border-radius:6px"><div style="font-size:18px;font-weight:700">24/7</div><div style="color:var(--text2)">AI Available</div></div>
+                <div style="text-align:center;padding:8px;background:var(--bg4);border-radius:6px"><div style="font-size:16px;font-weight:700">9AM-7PM</div><div style="color:var(--text2)">Human Hours</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- REPORTS -->
+    <div class="page" id="page-reports">
+      <div class="stats-row">
+        <div class="stat-card" style="border-color:var(--green)"><div class="stat-icon si-green"><i class="ti ti-trending-up"></i></div><div class="stat-label">Monthly Revenue</div><div class="stat-val green">PKR 4,82,500</div><div class="stat-delta"><span>+18.4%</span> vs June</div></div>
+        <div class="stat-card" style="border-color:var(--accent)"><div class="stat-icon si-blue"><i class="ti ti-calendar"></i></div><div class="stat-label">Total Bookings</div><div class="stat-val blue">94</div><div class="stat-delta"><span>+23%</span> vs June</div></div>
+        <div class="stat-card" style="border-color:var(--orange)"><div class="stat-icon si-orange"><i class="ti ti-message-circle"></i></div><div class="stat-label">Total Inquiries</div><div class="stat-val orange">312</div><div class="stat-delta">WA: 210 &middot; Call: 102</div></div>
+        <div class="stat-card" style="border-color:var(--purple)"><div class="stat-icon si-purple"><i class="ti ti-users"></i></div><div class="stat-label">New Customers</div><div class="stat-val purple">67</div><div class="stat-delta"><span>+31%</span> growth</div></div>
+      </div>
+      <div class="two-col">
+        <div class="panel">
+          <div class="panel-head"><div class="panel-title">Revenue by Car Model</div></div>
+          <div class="panel-body">
+            <div style="display:flex;flex-direction:column;gap:10px">
+              <div><div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px"><span>&#128665; Toyota Corolla Grande</span><span style="color:var(--green);font-weight:600">PKR 1,45,000 (26%)</span></div><div class="progress-bar"><div class="progress-fill" style="width:76%;background:var(--accent)"></div></div></div>
+              <div><div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px"><span>&#127963; Honda City</span><span style="color:var(--green);font-weight:600">PKR 1,20,000 (21%)</span></div><div class="progress-bar"><div class="progress-fill" style="width:63%;background:var(--green)"></div></div></div>
+              <div><div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px"><span>&#127912; Kia Sportage</span><span style="color:var(--green);font-weight:600">PKR 1,10,000 (19%)</span></div><div class="progress-bar"><div class="progress-fill" style="width:58%;background:var(--orange)"></div></div></div>
+              <div><div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px"><span>&#128663; Toyota Yaris Cross</span><span style="color:var(--green);font-weight:600">PKR 98,000 (17%)</span></div><div class="progress-bar"><div class="progress-fill" style="width:51%;background:var(--purple)"></div></div></div>
+              <div><div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px"><span>&#128664; Suzuki Swift</span><span style="color:var(--green);font-weight:600">PKR 1,02,000 (17%)</span></div><div class="progress-bar"><div class="progress-fill" style="width:52%;background:var(--cyan)"></div></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-head"><div class="panel-title">Source Breakdown</div></div>
+          <div class="panel-body">
+            <div style="display:flex;flex-direction:column;gap:12px">
+              <div style="background:var(--green-bg);border-radius:var(--r);padding:14px;display:flex;align-items:center;justify-content:space-between"><div><div style="font-size:13px;font-weight:600">&#x1F4F1; WhatsApp AI</div><div style="font-size:12px;color:var(--text2)">210 inquiries &middot; 143 bookings</div></div><div style="text-align:right"><div style="font-size:20px;font-weight:700;color:var(--green)">68%</div><div style="font-size:11px;color:var(--text2)">Conv. rate</div></div></div>
+              <div style="background:var(--cyan-bg);border-radius:var(--r);padding:14px;display:flex;align-items:center;justify-content:space-between"><div><div style="font-size:13px;font-weight:600">&#x1F4DE; Phone Calls</div><div style="font-size:12px;color:var(--text2)">102 inquiries &middot; 55 bookings</div></div><div style="text-align:right"><div style="font-size:20px;font-weight:700;color:var(--cyan)">54%</div><div style="font-size:11px;color:var(--text2)">Conv. rate</div></div></div>
+              <div style="background:var(--purple-bg);border-radius:var(--r);padding:14px;display:flex;align-items:center;justify-content:space-between"><div><div style="font-size:13px;font-weight:600">&#x1F504; Return Customers</div><div style="font-size:12px;color:var(--text2)">27 bookings this month</div></div><div style="text-align:right"><div style="font-size:20px;font-weight:700;color:var(--purple)">29%</div><div style="font-size:11px;color:var(--text2)">Retention</div></div></div>
+              <div style="display:flex;gap:10px"><button class="btn" style="flex:1;font-size:12px" onclick="showNotif('Exporting PDF...')"><i class="ti ti-file-pdf"></i>PDF</button><button class="btn" style="flex:1;font-size:12px" onclick="showNotif('Exporting Excel...')"><i class="ti ti-file-spreadsheet"></i>Excel</button></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="newBookingModal" onclick="if(event.target===this)this.classList.remove('show')">
+  <div class="modal">
+    <div class="modal-head">
+      <div class="modal-title"><i class="ti ti-calendar-plus" style="margin-right:8px;color:var(--accent)"></i>New Booking</div>
+      <span onclick="document.getElementById('newBookingModal').classList.remove('show')" style="cursor:pointer;color:var(--text3);font-size:20px"><i class="ti ti-x"></i></span>
+    </div>
+    <div class="modal-body">
+      <div class="form-group"><label class="form-label">Customer Name</label><input class="form-input" placeholder="e.g. Ali Raza" id="f-name"></div>
+      <div class="form-group"><label class="form-label">Phone Number</label><input class="form-input" placeholder="+92 300 XXXXXXX"></div>
+      <div class="form-row">
+        <div class="form-group"><label class="form-label">Select Car</label><select class="form-input"><option>Suzuki Swift — PKR 12,000/day</option><option>Honda City — PKR 18,000/day</option><option>Toyota Corolla Grande — PKR 20,000/day</option><option>Kia Sportage — PKR 25,000/day</option><option>Toyota Yaris Cross — PKR 20,000/day</option><option>Toyota Fortuner — PKR 40,000/day</option></select></div>
+        <div class="form-group"><label class="form-label">Agent</label><select class="form-input"><option>Ayla (AI)</option><option>Saad Ali</option><option>Maryam Raza</option></select></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label class="form-label">Start Date</label><input class="form-input" type="date" value="2026-08-05"></div>
+        <div class="form-group"><label class="form-label">End Date</label><input class="form-input" type="date" value="2026-08-08"></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label class="form-label">Discount %</label><input class="form-input" placeholder="0-15" value="0"></div>
+        <div class="form-group"><label class="form-label">Source</label><select class="form-input"><option>WhatsApp AI</option><option>Phone Call</option><option>Walk-in</option></select></div>
+      </div>
+      <div style="display:flex;gap:10px;margin-top:8px">
+        <button class="btn" style="flex:1" onclick="document.getElementById('newBookingModal').classList.remove('show')">Cancel</button>
+        <button class="btn primary" style="flex:2" onclick="createBooking()"><i class="ti ti-check"></i>Confirm + Calendar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="notif" id="notif"><i class="ti ti-check-circle" style="color:var(--green)"></i><span id="notif-text"></span></div>
+
+<script>
+function showPage(name,el){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-'+name).classList.add('active');
+  if(el){document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));el.classList.add('active');}
+  const t={dashboard:'Dashboard',chats:'AI WhatsApp Chats',bookings:'Booking Management',calls:'Call Logs',cars:'Fleet Management',followups:'Follow-up Queue',workflow:'n8n Workflow Diagram',agents:'Agent Management',reports:'Analytics & Reports'};
+  document.getElementById('page-title').textContent=t[name]||name;
+}
+let nTimer;
+function showNotif(msg){
+  const n=document.getElementById('notif');
+  document.getElementById('notif-text').textContent=msg;
+  n.classList.add('show');
+  clearTimeout(nTimer);
+  nTimer=setTimeout(()=>n.classList.remove('show'),3000);
+}
+const bars=[55,72,61,84,91,67,95,88,100,72,83,97,75,89,100];
+const mc=document.getElementById('miniChart');
+if(mc){bars.forEach((h,i)=>{const b=document.createElement('div');b.className='mini-bar'+(i===bars.length-1?' hi':'');b.style.height=(h*0.55)+'px';mc.appendChild(b);});}
+['w1','w2','w3'].forEach((id,wi)=>{
+  const w=document.getElementById(id);if(!w)return;
+  const hts=[3,5,8,12,18,24,20,14,8,5,3,8,16,22,18,12,7,4,10,18,24,20,15,9,5,3,8,14,20,16];
+  hts.forEach((h,i)=>{const b=document.createElement('div');b.className='wave-bar'+(i<wi*8+4?' active':'');b.style.height=h+'px';w.appendChild(b);});
+});
+const cal=document.getElementById('calGrid');
+if(cal){
+  const empties=3;
+  const followD=[2,3,5,8,12];
+  for(let i=0;i<empties;i++){const d=document.createElement('div');cal.appendChild(d);}
+  for(let d=1;d<=31;d++){
+    const cell=document.createElement('div');
+    cell.style.cssText='height:34px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12px;cursor:pointer;';
+    if(d===1){cell.style.background='var(--accent)';cell.style.color='#fff';cell.style.fontWeight='600';}
+    else if(followD.includes(d)){cell.style.background='var(--orange-bg)';cell.style.color='var(--orange)';cell.style.fontWeight='600';}
+    else{cell.style.color='var(--text2)';}
+    cell.textContent=d;
+    cal.appendChild(cell);
+  }
+}
+function filterBk(s,el){
+  document.querySelectorAll('.tabs .tab').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active');
+  document.querySelectorAll('#bkTable tbody tr').forEach(r=>{
+    r.style.display=(s==='all'||r.dataset.s===s)?'':'none';
+  });
+}
+function selChat(name,el){
+  document.querySelectorAll('.chat-item').forEach(c=>c.classList.remove('active'));
+  el.classList.add('active');
+  const n={priya:'Ayesha Malik',arjun:'Hamza Qureshi',sunita:'Sana Iqbal',rohit:'Fahad Ahmed',meera:'Zoya Hassan'};
+  showNotif('Chat: '+n[name]);
+}
+function sendMsg(){
+  const input=document.getElementById('msgInput');
+  const body=document.getElementById('msgBody');
+  if(!input.value.trim())return;
+  const b=document.createElement('div');
+  b.className='msg-bubble msg-out';
+  b.style.background='var(--green)';
+  b.textContent=input.value;
+  body.appendChild(b);
+  input.value='';
+  body.scrollTop=body.scrollHeight;
+  showNotif('Sent (Agent override)');
+}
+function createBooking(){
+  const name=document.getElementById('f-name').value||'New Customer';
+  document.getElementById('newBookingModal').classList.remove('show');
+  showNotif('Booking created for '+name+' + Calendar updated!');
+}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')document.querySelectorAll('.modal-overlay').forEach(m=>m.classList.remove('show'));});
+</script>
+</body>
+</html>

@@ -1,0 +1,316 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: #f8fafc;
+  color: #09090B;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: #f8fafc;
+  color: #09090B;
+  overflow-x: hidden;
+}
+
+/* Custom minimal scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f8fafc;
+}
+::-webkit-scrollbar-thumb {
+  background: #E4E4E7;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #A1A1AA;
+}
+
+/* Resend-inspired subtle pulse animation for terminal status indicator */
+@keyframes resendPulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(0.96);
+  }
+}
+
+.resend-pulse {
+  animation: resendPulse 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Subtle code glow */
+.code-box-shadow {
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08), 0 20px 40px -15px rgba(0, 0, 0, 0.3);
+}
+
+.card-subtle-border {
+  border: 1px solid rgba(228, 228, 231, 0.8);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card-subtle-border:hover {
+  border-color: rgba(161, 161, 170, 0.6);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.04);
+}
+
+/* FLOWLYM visual language */
+::selection { background: #18181b; color: #ffffff; }
+
+@keyframes floatSoft {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(0, -8px, 0); }
+}
+
+@keyframes shimmerLine {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+.flowlym-float { animation: floatSoft 5s ease-in-out infinite; }
+.flowlym-gradient-line {
+  background: linear-gradient(90deg, #09090b, #3f3f46, #71717a, #09090b);
+  background-size: 200% 100%;
+  animation: shimmerLine 7s linear infinite;
+}
+
+.range-dark { accent-color: #09090b; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: 0.01ms !important; }
+}
+
+/* Inquiry form polish */
+.formlym-input {
+  width: 100%;
+  padding: .72rem .85rem;
+  border: 1px solid #e4e4e7;
+  border-radius: .9rem;
+  background: #fafafa;
+  color: #18181b;
+  font-size: .75rem;
+  outline: none;
+  transition: border-color .2s ease, box-shadow .2s ease, background .2s ease, transform .2s ease;
+}
+.formlym-input::placeholder { color: #a1a1aa; }
+.formlym-input:focus { border-color: #18181b; background: #fff; box-shadow: 0 0 0 4px rgba(24,24,27,.08); transform: translateY(-1px); }
+
+
+/* React Bits-inspired BlurText entrance animation */
+.blur-text { display: inline; }
+.blur-text__item {
+  display: inline-block;
+  opacity: 0;
+  filter: blur(11px);
+  transform: var(--blur-offset);
+  animation: blurTextReveal 720ms cubic-bezier(.22,1,.36,1) var(--blur-delay) forwards;
+  will-change: transform, opacity, filter;
+}
+@keyframes blurTextReveal {
+  0% { opacity: 0; filter: blur(11px); transform: var(--blur-offset); }
+  100% { opacity: 1; filter: blur(0); transform: translate3d(0,0,0); }
+}
+
+/* Contact/start-project modal motion and depth */
+.modal-backdrop-in { animation: modalBackdropIn 240ms ease-out both; }
+.modal-card-in { animation: modalCardIn 520ms cubic-bezier(.16,1,.3,1) both; }
+@keyframes modalBackdropIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes modalCardIn {
+  from { opacity: 0; transform: translateY(18px) scale(.97); filter: blur(4px); }
+  to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+}
+.form-modal-shell {
+  box-shadow: 0 30px 90px rgba(24,24,27,.20), 0 0 0 1px rgba(24,24,27,.08);
+  animation: modalCardIn 520ms cubic-bezier(.16,1,.3,1) both;
+}
+.form-orb { animation: formOrbFloat 8s ease-in-out infinite; }
+.form-orb-delay { animation-delay: -3s; }
+@keyframes formOrbFloat {
+  0%,100% { transform: translate3d(0,0,0) scale(1); }
+  50% { transform: translate3d(-12px,10px,0) scale(1.08); }
+}
+.formlym-input {
+  position: relative;
+  border-color: #e4e4e7;
+  background: rgba(250,250,250,.88);
+  box-shadow: 0 1px 1px rgba(24,24,27,.02);
+}
+.formlym-input:hover { border-color: #a1a1aa; background: #fff; }
+.form-submit-button::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  transform: translateX(-120%);
+  background: linear-gradient(100deg, transparent, rgba(255,255,255,.20), transparent);
+  transition: transform .7s ease;
+}
+.form-submit-button:hover::before { transform: translateX(120%); }
+.form-submit-button:active { transform: translateY(1px) scale(.995); }
+
+@media (prefers-reduced-motion: reduce) {
+  .blur-text__item, .modal-backdrop-in, .modal-card-in, .form-modal-shell, .form-orb { animation: none !important; }
+  .blur-text__item { opacity: 1; filter: none; transform: none; }
+}
+
+
+.hero-enter {
+  opacity: 0;
+  transform: translateY(14px);
+  animation: heroEnter 700ms cubic-bezier(.22,1,.36,1) var(--hero-delay, 0ms) forwards;
+}
+@keyframes heroEnter { to { opacity: 1; transform: translateY(0); } }
+
+/* Route-to-route motion: every page gets a deliberate, premium entrance. */
+.page-transition {
+  animation: pageEnter 560ms cubic-bezier(.16,1,.3,1) both;
+  transform-origin: 50% 12%;
+}
+@keyframes pageEnter {
+  0% { opacity: 0; transform: translateY(14px) scale(.995); filter: blur(5px); }
+  55% { opacity: 1; filter: blur(0); }
+  100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+}
+
+/* Shared blurred automation atmosphere across all routes. */
+.automation-atmosphere {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  opacity: .58;
+}
+.automation-atmosphere__glow {
+  position: absolute;
+  width: 34rem;
+  height: 34rem;
+  border-radius: 999px;
+  filter: blur(90px);
+  opacity: .13;
+  animation: automationGlow 12s ease-in-out infinite;
+}
+.automation-atmosphere__glow--one { right: -10rem; top: 8rem; background: #27272a; }
+.automation-atmosphere__glow--two { left: -13rem; bottom: 12rem; background: #0891b2; animation-delay: -5s; }
+@keyframes automationGlow {
+  0%,100% { transform: translate3d(0,0,0) scale(1); }
+  50% { transform: translate3d(-18px,15px,0) scale(1.08); }
+}
+.automation-atmosphere__terminal {
+  position: absolute;
+  right: clamp(-20rem, -12vw, -7rem);
+  top: 24%;
+  width: min(590px, 48vw);
+  border: 1px solid rgba(39,39,42,.16);
+  border-radius: 22px;
+  background: rgba(9,9,11,.055);
+  box-shadow: 0 30px 90px rgba(24,24,27,.06);
+  color: rgba(39,39,42,.26);
+  transform: rotate(-5deg) scale(1.02);
+  filter: blur(1.7px);
+  opacity: .28;
+  animation: atmosphereDrift 11s ease-in-out infinite;
+}
+.automation-atmosphere__bar,
+.automation-atmosphere__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  font: 500 9px/1 var(--font-mono);
+  border-color: rgba(39,39,42,.08);
+}
+.automation-atmosphere__bar { border-bottom: 1px solid rgba(39,39,42,.08); }
+.automation-atmosphere__dots { display: flex; gap: 5px; }
+.automation-atmosphere__dots i { width: 6px; height: 6px; border-radius: 999px; background: rgba(39,39,42,.22); }
+.automation-atmosphere__status { color: rgba(16,185,129,.42); }
+.automation-atmosphere__code { padding: 20px 24px; font: 500 10px/1.8 var(--font-mono); }
+.automation-atmosphere__code p { margin: 0; white-space: nowrap; }
+.automation-atmosphere__code b { color: rgba(39,39,42,.4); }
+.automation-atmosphere__code em { color: rgba(245,158,11,.38); font-style: normal; }
+.automation-atmosphere__code strong { color: rgba(5,150,105,.38); font-weight: 500; }
+.automation-atmosphere__footer { border-top: 1px solid rgba(39,39,42,.08); }
+.automation-atmosphere__footer i { display: inline-block; width: 5px; height: 5px; border-radius: 999px; background: rgba(16,185,129,.5); margin-right: 5px; }
+@keyframes atmosphereDrift {
+  0%,100% { transform: rotate(-5deg) translate3d(0,0,0) scale(1.02); }
+  50% { transform: rotate(-3deg) translate3d(-18px,12px,0) scale(1.045); }
+}
+
+/* Main home terminal: subtle glass/glow treatment while retaining the black terminal aesthetic. */
+.automation-terminal {
+  position: relative;
+  box-shadow: 0 24px 70px rgba(9,9,11,.20), 0 0 0 1px rgba(39,39,42,.2);
+  animation: terminalFloat 7s ease-in-out infinite;
+}
+.automation-terminal::before {
+  content: '';
+  position: absolute;
+  inset: -35%;
+  z-index: -1;
+  background: radial-gradient(circle, rgba(39,39,42,.20), rgba(34,211,238,.08) 35%, transparent 68%);
+  filter: blur(35px);
+  animation: terminalAura 6s ease-in-out infinite;
+}
+.automation-terminal__bar { box-shadow: inset 0 -1px 0 rgba(255,255,255,.035); }
+@keyframes terminalFloat { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+@keyframes terminalAura { 0%,100% { opacity: .45; transform: scale(.95); } 50% { opacity: .9; transform: scale(1.05); } }
+
+/* Compact dark footer with depth rather than a flat black slab. */
+.flowlym-footer {
+  position: relative;
+  background:
+    radial-gradient(circle at 80% 0%, rgba(39,39,42,.16), transparent 30%),
+    radial-gradient(circle at 15% 100%, rgba(8,145,178,.10), transparent 28%),
+    linear-gradient(135deg, #09090b 0%, #111116 52%, #0a0a0d 100%);
+}
+.flowlym-footer__ambient {
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  border-radius: 999px;
+  filter: blur(70px);
+  pointer-events: none;
+  opacity: .22;
+  animation: footerFloat 10s ease-in-out infinite;
+}
+.flowlym-footer__ambient--one { right: 8%; top: -100px; background: #27272a; }
+.flowlym-footer__ambient--two { left: 4%; bottom: -150px; background: #0891b2; animation-delay: -4s; }
+.footer-live-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: #34d399;
+  box-shadow: 0 0 14px rgba(52,211,153,.65);
+  animation: resendPulse 2.2s ease-in-out infinite;
+}
+@keyframes footerFloat { 0%,100% { transform: translate3d(0,0,0); } 50% { transform: translate3d(-12px,8px,0); } }
+
+@media (max-width: 900px) {
+  .automation-atmosphere__terminal { right: -18rem; top: 30%; width: 520px; opacity: .18; }
+}
+@media (max-width: 640px) {
+  .automation-atmosphere__terminal { right: -21rem; top: 28%; }
+  .automation-atmosphere { opacity: .35; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-transition,
+  .automation-atmosphere__glow,
+  .automation-atmosphere__terminal,
+  .automation-terminal,
+  .automation-terminal::before,
+  .flowlym-footer__ambient { animation: none !important; }
+}

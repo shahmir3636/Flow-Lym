@@ -1,0 +1,8 @@
+{
+  "name": "Final Version",
+  "description": "FLOWLYM AI & enterprise automation agency website featuring operational impact metrics, real case studies with workflow diagrams, separate about and team directories, and interactive ROI calculator.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
