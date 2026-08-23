@@ -19,7 +19,7 @@ const TEAM: Member[] = [
   {
     id: 'shahmir',
     name: 'Muhammad Shahmir Haider',
-    role: 'AI Automation Engineer · Founder',
+    role: 'AI Automation Engineer ',
     bio: 'Designs practical AI-powered workflows that connect business processes, APIs, CRMs and intelligent agents into reliable systems. Focused on turning repetitive operations into measurable, maintainable automation.',
     focus: ['AI Automation', 'n8n Workflows', 'AI Agents', 'API Integrations'],
     gradient: 'from-violet-500 via-fuchsia-500 to-cyan-400',
@@ -28,7 +28,7 @@ const TEAM: Member[] = [
   {
     id: 'sajawal',
     name: 'Muhammad Sajawal Khan',
-    role: 'Software Developer · Founder',
+    role: 'Software Developer ',
     bio: 'Builds modern web applications and custom software around the operational requirements of each project, with an emphasis on clean interfaces, dependable backend systems and practical product delivery.',
     focus: ['Web Applications', 'Backend Systems', 'APIs', 'Software Development'],
     gradient: 'from-cyan-400 via-blue-500 to-violet-500',
@@ -37,7 +37,7 @@ const TEAM: Member[] = [
   {
     id: 'huzaifa',
     name: 'Muhammad Huzaifa',
-    role: 'AI Solutions Engineer · Founder',
+    role: 'AI Solutions Engineer ',
     bio: 'Works on AI-driven product ideas, intelligent interfaces and the engineering layer that turns AI capabilities into useful business tools.',
     focus: ['AI Solutions', 'LLM Integrations', 'AI Products', 'Automation'],
     gradient: 'from-fuchsia-500 via-violet-500 to-amber-400',
