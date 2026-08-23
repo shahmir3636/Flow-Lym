@@ -3,7 +3,6 @@ import { PageRoute, ProjectItem } from './types';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
 import { ProjectModal } from './components/ProjectModal';
-import { StartProjectModal } from './components/StartProjectModal';
 import { AutomationAtmosphere } from './components/AutomationAtmosphere';
 
 // Pages
@@ -19,7 +18,6 @@ import { TeamPage } from './pages/TeamPage';
 export default function App() {
   const [activeRoute, setActiveRoute] = useState<PageRoute>('home');
   const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
-  const [isStartProjectOpen, setIsStartProjectOpen] = useState<boolean>(false);
 
   // Sync hash routing on mount & hash change for smooth navigation & deep linking
   useEffect(() => {
@@ -74,7 +72,7 @@ export default function App() {
       <Navbar
         activeRoute={activeRoute}
         onNavigate={handleNavigate}
-        onOpenStartProject={() => setIsStartProjectOpen(true)}
+        onOpenStartProject={() => handleNavigate('contact')}
       />
 
       {/* Main Page Content Viewports */}
@@ -83,7 +81,7 @@ export default function App() {
         {activeRoute === 'home' && (
           <HomePage
             onNavigate={handleNavigate}
-            onOpenStartProject={() => setIsStartProjectOpen(true)}
+            onOpenStartProject={() => handleNavigate('contact')}
             onSelectProject={(proj) => setSelectedProject(proj)}
           />
         )}
@@ -91,37 +89,37 @@ export default function App() {
         {activeRoute === 'services' && (
           <ServicesPage
             onNavigate={handleNavigate}
-            onOpenStartProject={() => setIsStartProjectOpen(true)}
+            onOpenStartProject={() => handleNavigate('contact')}
           />
         )}
 
         {activeRoute === 'projects' && (
           <ProjectsPage
             onNavigate={handleNavigate}
-            onOpenStartProject={() => setIsStartProjectOpen(true)}
+            onOpenStartProject={() => handleNavigate('contact')}
             onSelectProject={(proj) => setSelectedProject(proj)}
           />
         )}
 
         {activeRoute === 'ai-demos' && (
-          <AIDemosPage onOpenStartProject={() => setIsStartProjectOpen(true)} />
+          <AIDemosPage onOpenStartProject={() => handleNavigate('contact')} />
         )}
 
         {activeRoute === 'team' && (
-          <TeamPage onOpenStartProject={() => setIsStartProjectOpen(true)} />
+          <TeamPage onOpenStartProject={() => handleNavigate('contact')} />
         )}
 
         {activeRoute === 'roi-calculator' && (
           <ROICalculatorPage
             onNavigate={handleNavigate}
-            onOpenStartProject={() => setIsStartProjectOpen(true)}
+            onOpenStartProject={() => handleNavigate('contact')}
           />
         )}
 
         {activeRoute === 'about' && (
           <AboutPage
             onNavigate={handleNavigate}
-            onOpenStartProject={() => setIsStartProjectOpen(true)}
+            onOpenStartProject={() => handleNavigate('contact')}
           />
         )}
 
@@ -137,7 +135,7 @@ export default function App() {
       {/* Agency Footer */}
       <Footer
         onNavigate={handleNavigate}
-        onOpenStartProject={() => setIsStartProjectOpen(true)}
+        onOpenStartProject={() => handleNavigate('contact')}
       />
 
       {/* Case Study Detail Modal */}
@@ -146,12 +144,6 @@ export default function App() {
         onClose={() => setSelectedProject(null)}
         onStartProject={() => setIsStartProjectOpen(true)}
         onOpenDemo={() => handleNavigate('ai-demos')}
-      />
-
-      {/* Start Project Quick Scope Drawer / Modal */}
-      <StartProjectModal
-        isOpen={isStartProjectOpen}
-        onClose={() => setIsStartProjectOpen(false)}
       />
 
     </div>
