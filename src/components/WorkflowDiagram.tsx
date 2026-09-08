@@ -87,27 +87,27 @@ export const WorkflowDiagram: React.FC<WorkflowDiagramProps> = ({
         };
       case 'ai':
         return {
-          badge: 'bg-purple-500/10 text-purple-400 border-purple-500/30',
-          accent: '#A855F7',
-          glow: 'shadow-purple-500/20',
-          ring: 'ring-purple-500/40',
-          border: 'border-purple-500/50'
+          badge: 'bg-zinc-500/10 text-zinc-400 border-zinc-500/30',
+          accent: '#52525b',
+          glow: 'shadow-zinc-500/20',
+          ring: 'ring-zinc-500/40',
+          border: 'border-zinc-500/50'
         };
       case 'engine':
         return {
-          badge: 'bg-blue-500/10 text-blue-400 border-blue-500/30',
-          accent: '#3B82F6',
-          glow: 'shadow-blue-500/20',
-          ring: 'ring-blue-500/40',
-          border: 'border-blue-500/50'
+          badge: 'bg-zinc-500/10 text-zinc-400 border-zinc-500/30',
+          accent: '#71717a',
+          glow: 'shadow-zinc-500/20',
+          ring: 'ring-zinc-500/40',
+          border: 'border-zinc-500/50'
         };
       case 'storage':
         return {
-          badge: 'bg-cyan-500/10 text-cyan-400 border-cyan-500/30',
-          accent: '#06B6D4',
-          glow: 'shadow-cyan-500/20',
-          ring: 'ring-cyan-500/40',
-          border: 'border-cyan-500/50'
+          badge: 'bg-zinc-400/10 text-zinc-500 border-zinc-400/30',
+          accent: '#71717a',
+          glow: 'shadow-zinc-400/20',
+          ring: 'ring-zinc-400/40',
+          border: 'border-zinc-400/50'
         };
       case 'crm':
         return {
@@ -127,11 +127,11 @@ export const WorkflowDiagram: React.FC<WorkflowDiagramProps> = ({
         };
       default:
         return {
-          badge: 'bg-zinc-800 text-zinc-300 border-zinc-700',
+          badge: 'bg-zinc-700 text-zinc-300 border-zinc-600',
           accent: '#71717A',
-          glow: 'shadow-zinc-500/10',
-          ring: 'ring-zinc-500/30',
-          border: 'border-zinc-700'
+          glow: 'shadow-zinc-400/10',
+          ring: 'ring-zinc-400/30',
+          border: 'border-zinc-600'
         };
     }
   };
@@ -141,11 +141,11 @@ export const WorkflowDiagram: React.FC<WorkflowDiagramProps> = ({
       case 'trigger':
         return <Activity className="w-3.5 h-3.5 text-amber-400" />;
       case 'ai':
-        return <Cpu className="w-3.5 h-3.5 text-purple-400" />;
+        return <Cpu className="w-3.5 h-3.5 text-zinc-400" />;
       case 'engine':
-        return <Workflow className="w-3.5 h-3.5 text-blue-400" />;
+        return <Workflow className="w-3.5 h-3.5 text-zinc-400" />;
       case 'storage':
-        return <Database className="w-3.5 h-3.5 text-cyan-400" />;
+        return <Database className="w-3.5 h-3.5 text-zinc-500" />;
       case 'crm':
         return <Layers className="w-3.5 h-3.5 text-emerald-400" />;
       case 'dispatch':
@@ -203,14 +203,14 @@ export const WorkflowDiagram: React.FC<WorkflowDiagramProps> = ({
     <div className="space-y-6 font-sans">
       
       {/* 1. Header Toolbar & Simulation Controls */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 rounded-xl bg-zinc-900/90 border border-zinc-800">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 rounded-xl bg-zinc-800/90 border border-zinc-700">
         <div className="space-y-1">
           <div className="flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
             <span className="text-xs font-mono font-semibold uppercase tracking-wider text-white">
               Data Journey & Integrated Tool Pipeline
             </span>
-            <span className="px-2 py-0.5 rounded bg-zinc-800 text-[10px] font-mono text-zinc-300 border border-zinc-700">
+            <span className="px-2 py-0.5 rounded bg-zinc-700 text-[10px] font-mono text-zinc-300 border border-zinc-600">
               {nodes.length} Stages
             </span>
           </div>
@@ -221,13 +221,13 @@ export const WorkflowDiagram: React.FC<WorkflowDiagramProps> = ({
 
         {/* Playback Controls & View Switcher */}
         <div className="flex flex-wrap items-center gap-2 shrink-0">
-          <div className="flex items-center bg-zinc-950 p-1 rounded-lg border border-zinc-800 text-xs">
+          <div className="flex items-center bg-zinc-900 p-1 rounded-lg border border-zinc-700 text-xs">
             <button
               onClick={() => setIsPlaying(!isPlaying)}
               className={`px-3 py-1.5 rounded-md font-mono flex items-center gap-1.5 transition-all cursor-pointer ${
                 isPlaying 
                   ? 'bg-amber-500/20 text-amber-300 border border-amber-500/40' 
-                  : 'bg-zinc-800 text-zinc-200 hover:bg-zinc-700 hover:text-white'
+                  : 'bg-zinc-700 text-zinc-200 hover:bg-zinc-600 hover:text-white'
               }`}
               title={isPlaying ? 'Pause simulation' : 'Run live simulation'}
             >
@@ -240,7 +240,7 @@ export const WorkflowDiagram: React.FC<WorkflowDiagramProps> = ({
                 setSelectedNodeIndex(0);
                 setIsPlaying(false);
               }}
-              className="p-1.5 text-zinc-400 hover:text-white hover:bg-zinc-850 rounded-md transition-colors cursor-pointer"
+              className="p-1.5 text-zinc-400 hover:text-white hover:bg-zinc-800 rounded-md transition-colors cursor-pointer"
               title="Reset to step 1"
             >
               <RotateCcw className="w-3.5 h-3.5" />
@@ -257,11 +257,11 @@ export const WorkflowDiagram: React.FC<WorkflowDiagramProps> = ({
             )}
           </div>
 
-          <div className="flex bg-zinc-950 p-1 rounded-lg border border-zinc-800 text-xs">
+          <div className="flex bg-zinc-900 p-1 rounded-lg border border-zinc-700 text-xs">
             <button
               onClick={() => setViewMode('canvas')}
               className={`px-2.5 py-1 rounded-md text-[11px] font-mono transition-colors cursor-pointer ${
-                viewMode === 'canvas' ? 'bg-zinc-800 text-white font-semibold' : 'text-zinc-400 hover:text-zinc-200'
+                viewMode === 'canvas' ? 'bg-zinc-700 text-white font-semibold' : 'text-zinc-400 hover:text-zinc-200'
               }`}
             >
               Interactive Canvas
@@ -269,7 +269,7 @@ export const WorkflowDiagram: React.FC<WorkflowDiagramProps> = ({
             <button
               onClick={() => setViewMode('linear')}
               className={`px-2.5 py-1 rounded-md text-[11px] font-mono transition-colors cursor-pointer ${
-                viewMode === 'linear' ? 'bg-zinc-800 text-white font-semibold' : 'text-zinc-400 hover:text-zinc-200'
+                viewMode === 'linear' ? 'bg-zinc-700 text-white font-semibold' : 'text-zinc-400 hover:text-zinc-200'
               }`}
             >
               Timeline View
@@ -280,7 +280,7 @@ export const WorkflowDiagram: React.FC<WorkflowDiagramProps> = ({
 
       {/* 2. Visual Canvas View (SVG Grid & Connected Pipeline Flow) */}
       {viewMode === 'canvas' ? (
-        <div className="relative rounded-2xl bg-zinc-950 border border-zinc-800 p-5 sm:p-7 overflow-hidden shadow-inner space-y-6">
+        <div className="relative rounded-2xl bg-zinc-900 border border-zinc-700 p-5 sm:p-7 overflow-hidden shadow-inner space-y-6">
           
           {/* Subtle SVG Grid Background Blueprint */}
           <div className="absolute inset-0 pointer-events-none opacity-20">
@@ -296,19 +296,19 @@ export const WorkflowDiagram: React.FC<WorkflowDiagramProps> = ({
           </div>
 
           {/* Top Live Stage Progress Bar */}
-          <div className="relative z-10 flex items-center justify-between gap-2 pb-4 border-b border-zinc-800/80">
+          <div className="relative z-10 flex items-center justify-between gap-2 pb-4 border-b border-zinc-700/80">
             <div className="flex items-center gap-2">
               <span className="text-xs font-mono text-zinc-400">
                 ACTIVE STEP: <strong className="text-white">0{activeNode.stepNumber} of 0{nodes.length}</strong>
               </span>
-              <span className="text-zinc-600">·</span>
+              <span className="text-zinc-500">·</span>
               <span className="text-xs font-mono text-emerald-400">
                 {activeNode.title}
               </span>
             </div>
 
             <div className="flex items-center gap-1.5 font-mono text-[11px] text-zinc-400">
-              <Clock className="w-3 h-3 text-zinc-500" />
+              <Clock className="w-3 h-3 text-zinc-400" />
               <span>Est. Latency: <span className="text-zinc-200">{getLatency(activeNode, selectedNodeIndex)}</span></span>
             </div>
           </div>
@@ -330,10 +330,10 @@ export const WorkflowDiagram: React.FC<WorkflowDiagramProps> = ({
                   }}
                   className={`group relative p-4 rounded-xl border transition-all duration-200 cursor-pointer flex flex-col justify-between space-y-3 ${
                     isSelected
-                      ? `bg-zinc-900 ${colorInfo.border} ring-2 ${colorInfo.ring} ${colorInfo.glow} shadow-lg`
+                      ? `bg-zinc-800 ${colorInfo.border} ring-2 ${colorInfo.ring} ${colorInfo.glow} shadow-lg`
                       : isCompleted
-                      ? 'bg-zinc-900/40 border-zinc-800 opacity-80 hover:opacity-100 hover:border-zinc-700'
-                      : 'bg-zinc-900/60 border-zinc-800/90 hover:border-zinc-700 hover:bg-zinc-900/90'
+                      ? 'bg-zinc-800/40 border-zinc-700 opacity-80 hover:opacity-100 hover:border-zinc-600'
+                      : 'bg-zinc-800/60 border-zinc-700/90 hover:border-zinc-600 hover:bg-zinc-800/90'
                   }`}
                 >
                   {/* Glowing Pulse Node Anchor for Active Step */}
@@ -346,8 +346,8 @@ export const WorkflowDiagram: React.FC<WorkflowDiagramProps> = ({
                     <div className="flex items-center gap-2">
                       <div className={`w-6 h-6 rounded-md font-mono text-xs flex items-center justify-center font-bold transition-colors ${
                         isSelected 
-                          ? 'bg-white text-zinc-950' 
-                          : 'bg-zinc-800 text-zinc-300 border border-zinc-700'
+                          ? 'bg-white text-zinc-900' 
+                          : 'bg-zinc-700 text-zinc-300 border border-zinc-600'
                       }`}>
                         0{node.stepNumber}
                       </div>
@@ -360,7 +360,7 @@ export const WorkflowDiagram: React.FC<WorkflowDiagramProps> = ({
 
                     {/* Step Link Arrow */}
                     {idx < nodes.length - 1 && (
-                      <div className="hidden lg:flex items-center text-zinc-600 text-xs font-mono">
+                      <div className="hidden lg:flex items-center text-zinc-500 text-xs font-mono">
                         <span className={isSelected ? 'text-emerald-400 font-bold' : ''}>➔</span>
                       </div>
                     )}
@@ -375,7 +375,7 @@ export const WorkflowDiagram: React.FC<WorkflowDiagramProps> = ({
                     </h4>
 
                     <div className="flex items-center gap-1.5 text-xs text-zinc-400 font-mono">
-                      <Terminal className="w-3 h-3 text-zinc-500 shrink-0" />
+                      <Terminal className="w-3 h-3 text-zinc-400 shrink-0" />
                       <span className="truncate text-zinc-300 font-medium">{node.tool}</span>
                     </div>
                   </div>
@@ -386,7 +386,7 @@ export const WorkflowDiagram: React.FC<WorkflowDiagramProps> = ({
                   </p>
 
                   {/* Footer Stats & Payload Peek */}
-                  <div className="pt-2 border-t border-zinc-800/80 flex items-center justify-between text-[10px] font-mono text-zinc-500">
+                  <div className="pt-2 border-t border-zinc-700/80 flex items-center justify-between text-[10px] font-mono text-zinc-400">
                     <div className="flex items-center gap-1">
                       <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
                       <span>{getProtocol(node, idx).split(' ')[0]}</span>
@@ -405,21 +405,21 @@ export const WorkflowDiagram: React.FC<WorkflowDiagramProps> = ({
           </div>
 
           {/* Connecting SVG Stream Pipeline Animation Banner */}
-          <div className="relative z-10 p-3 bg-zinc-900/90 rounded-xl border border-zinc-800 flex flex-col md:flex-row items-center justify-between gap-3 text-xs font-mono">
+          <div className="relative z-10 p-3 bg-zinc-800/90 rounded-xl border border-zinc-700 flex flex-col md:flex-row items-center justify-between gap-3 text-xs font-mono">
             <div className="flex items-center gap-2 text-zinc-300">
               <Cable className="w-4 h-4 text-emerald-400 shrink-0" />
               <span>Data Transit Pipeline:</span>
               <span className="text-white font-bold">{activeNode.tool}</span>
-              <span className="text-zinc-500">➔</span>
+              <span className="text-zinc-400">➔</span>
               <span className="text-zinc-300">{getNextTool(selectedNodeIndex)}</span>
             </div>
 
             <div className="flex items-center gap-3 text-[11px] text-zinc-400">
               <span className="flex items-center gap-1">
-                <Lock className="w-3 h-3 text-zinc-500" />
+                <Lock className="w-3 h-3 text-zinc-400" />
                 <span>Zero-Data Retention</span>
               </span>
-              <span className="text-zinc-600">·</span>
+              <span className="text-zinc-500">·</span>
               <span className="flex items-center gap-1">
                 <ShieldCheck className="w-3 h-3 text-emerald-400" />
                 <span>DLQ Auto-Failover</span>
@@ -430,7 +430,7 @@ export const WorkflowDiagram: React.FC<WorkflowDiagramProps> = ({
         </div>
       ) : (
         /* Linear Timeline View with Step Journey Details */
-        <div className="rounded-2xl bg-zinc-950 border border-zinc-800 p-6 space-y-6">
+        <div className="rounded-2xl bg-zinc-900 border border-zinc-700 p-6 space-y-6">
           <div className="space-y-4">
             {nodes.map((node, idx) => {
               const isSelected = selectedNodeIndex === idx;
@@ -442,13 +442,13 @@ export const WorkflowDiagram: React.FC<WorkflowDiagramProps> = ({
                   onClick={() => setSelectedNodeIndex(idx)}
                   className={`p-4 rounded-xl border transition-all cursor-pointer ${
                     isSelected
-                      ? `bg-zinc-900 ${colorInfo.border} ring-1 ${colorInfo.ring}`
-                      : 'bg-zinc-900/40 border-zinc-800 hover:border-zinc-700 hover:bg-zinc-900/70'
+                      ? `bg-zinc-800 ${colorInfo.border} ring-1 ${colorInfo.ring}`
+                      : 'bg-zinc-800/40 border-zinc-700 hover:border-zinc-600 hover:bg-zinc-800/70'
                   }`}
                 >
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-2 border-b border-zinc-800/80">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-2 border-b border-zinc-700/80">
                     <div className="flex items-center gap-2.5">
-                      <span className="w-6 h-6 rounded-md bg-zinc-800 border border-zinc-700 font-mono text-xs flex items-center justify-center font-bold text-white">
+                      <span className="w-6 h-6 rounded-md bg-zinc-700 border border-zinc-600 font-mono text-xs flex items-center justify-center font-bold text-white">
                         0{node.stepNumber}
                       </span>
                       <h4 className="text-sm font-semibold text-white">
@@ -470,7 +470,7 @@ export const WorkflowDiagram: React.FC<WorkflowDiagramProps> = ({
                     <div className="md:col-span-7 text-xs text-zinc-300 leading-relaxed">
                       {node.description}
                     </div>
-                    <div className="md:col-span-5 bg-zinc-950 p-2.5 rounded-lg border border-zinc-800 font-mono text-[10px] text-emerald-400 overflow-x-auto whitespace-pre-wrap">
+                    <div className="md:col-span-5 bg-zinc-900 p-2.5 rounded-lg border border-zinc-700 font-mono text-[10px] text-emerald-400 overflow-x-auto whitespace-pre-wrap">
                       {node.dataPayload}
                     </div>
                   </div>
@@ -482,10 +482,10 @@ export const WorkflowDiagram: React.FC<WorkflowDiagramProps> = ({
       )}
 
       {/* 3. Deep Data Transformation Inspector Panel */}
-      <div className="rounded-2xl bg-zinc-900 border border-zinc-800 overflow-hidden shadow-lg">
+      <div className="rounded-2xl bg-zinc-800 border border-zinc-700 overflow-hidden shadow-lg">
         
         {/* Inspector Header */}
-        <div className="px-5 py-3.5 bg-zinc-950 border-b border-zinc-800 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+        <div className="px-5 py-3.5 bg-zinc-900 border-b border-zinc-700 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
           <div className="flex items-center gap-2">
             <Code2 className="w-4 h-4 text-emerald-400" />
             <span className="font-mono text-xs font-semibold text-white">
@@ -496,7 +496,7 @@ export const WorkflowDiagram: React.FC<WorkflowDiagramProps> = ({
           <div className="flex items-center gap-2">
             <button
               onClick={handleCopyPayload}
-              className="px-2.5 py-1 bg-zinc-800 hover:bg-zinc-700 text-zinc-300 hover:text-white rounded-md text-[11px] font-mono flex items-center gap-1.5 transition-colors cursor-pointer"
+              className="px-2.5 py-1 bg-zinc-700 hover:bg-zinc-600 text-zinc-300 hover:text-white rounded-md text-[11px] font-mono flex items-center gap-1.5 transition-colors cursor-pointer"
             >
               {copiedPayload ? <Check className="w-3 h-3 text-emerald-400" /> : <Copy className="w-3 h-3" />}
               <span>{copiedPayload ? 'Copied' : 'Copy Payload'}</span>
@@ -514,14 +514,14 @@ export const WorkflowDiagram: React.FC<WorkflowDiagramProps> = ({
               <div className="text-[11px] font-mono uppercase text-zinc-400 tracking-wider">
                 Integrated Systems Route
               </div>
-              <div className="p-3 bg-zinc-950 rounded-xl border border-zinc-800 flex items-center justify-between text-xs font-mono">
+              <div className="p-3 bg-zinc-900 rounded-xl border border-zinc-700 flex items-center justify-between text-xs font-mono">
                 <div className="space-y-0.5">
-                  <div className="text-[10px] text-zinc-500 uppercase">Origin Tool</div>
+                  <div className="text-[10px] text-zinc-400 uppercase">Origin Tool</div>
                   <div className="text-white font-semibold">{activeNode.tool}</div>
                 </div>
-                <div className="px-2 py-1 bg-zinc-900 rounded text-emerald-400 font-bold">➔</div>
+                <div className="px-2 py-1 bg-zinc-800 rounded text-emerald-400 font-bold">➔</div>
                 <div className="space-y-0.5 text-right">
-                  <div className="text-[10px] text-zinc-500 uppercase">Target Tool</div>
+                  <div className="text-[10px] text-zinc-400 uppercase">Target Tool</div>
                   <div className="text-zinc-200 font-semibold">{getNextTool(selectedNodeIndex)}</div>
                 </div>
               </div>
@@ -531,20 +531,20 @@ export const WorkflowDiagram: React.FC<WorkflowDiagramProps> = ({
               <div className="text-[11px] font-mono uppercase text-zinc-400 tracking-wider">
                 Operational Action & Logic
               </div>
-              <p className="text-xs text-zinc-300 leading-relaxed bg-zinc-950 p-3.5 rounded-xl border border-zinc-800">
+              <p className="text-xs text-zinc-300 leading-relaxed bg-zinc-900 p-3.5 rounded-xl border border-zinc-700">
                 {activeNode.description}
               </p>
             </div>
 
             {/* Protocol & DLQ Specs */}
             <div className="grid grid-cols-2 gap-3 pt-1">
-              <div className="p-3 bg-zinc-950 rounded-xl border border-zinc-800 space-y-1">
+              <div className="p-3 bg-zinc-900 rounded-xl border border-zinc-700 space-y-1">
                 <div className="text-[10px] font-mono text-zinc-400 uppercase">Communication Protocol</div>
                 <div className="text-xs font-mono font-medium text-zinc-200">
                   {getProtocol(activeNode, selectedNodeIndex)}
                 </div>
               </div>
-              <div className="p-3 bg-zinc-950 rounded-xl border border-zinc-800 space-y-1">
+              <div className="p-3 bg-zinc-900 rounded-xl border border-zinc-700 space-y-1">
                 <div className="text-[10px] font-mono text-zinc-400 uppercase">Error / Failover Policy</div>
                 <div className="text-xs font-mono font-medium text-emerald-400">
                   {activeNode.errorPolicy || 'DLQ Exponential Backoff (5x)'}
@@ -561,12 +561,12 @@ export const WorkflowDiagram: React.FC<WorkflowDiagramProps> = ({
               <span className="text-emerald-400 font-medium">JSON Validated</span>
             </div>
 
-            <div className="relative bg-zinc-950 p-4 rounded-xl border border-zinc-800 font-mono text-xs text-emerald-400 overflow-x-auto min-h-[180px] max-h-[260px]">
+            <div className="relative bg-zinc-900 p-4 rounded-xl border border-zinc-700 font-mono text-xs text-emerald-400 overflow-x-auto min-h-[180px] max-h-[260px]">
               <pre className="whitespace-pre-wrap leading-relaxed">
                 {activeNode.dataPayload}
               </pre>
 
-              <div className="mt-3 pt-3 border-t border-zinc-800/80 flex items-center justify-between text-[10px] text-zinc-500">
+              <div className="mt-3 pt-3 border-t border-zinc-700/80 flex items-center justify-between text-[10px] text-zinc-400">
                 <span>Schema: RFC 8259 JSON</span>
                 <span className="text-zinc-400">State: Committed & Verified</span>
               </div>
@@ -578,17 +578,17 @@ export const WorkflowDiagram: React.FC<WorkflowDiagramProps> = ({
       </div>
 
       {/* 4. Complete Technology Ecosystem Integration Footprint */}
-      <div className="p-4 sm:p-5 rounded-xl bg-zinc-950 border border-zinc-800 space-y-3">
+      <div className="p-4 sm:p-5 rounded-xl bg-zinc-900 border border-zinc-700 space-y-3">
         <div className="flex items-center justify-between text-xs font-mono text-zinc-400">
           <span className="uppercase tracking-wider">Connected Infrastructure Stack for This System</span>
-          <span className="text-zinc-500">{technologyStack.length} Integrated Tools</span>
+          <span className="text-zinc-400">{technologyStack.length} Integrated Tools</span>
         </div>
 
         <div className="flex flex-wrap gap-2">
           {technologyStack.map((tech, idx) => (
             <span
               key={idx}
-              className="px-3 py-1 bg-zinc-900 border border-zinc-800 text-zinc-200 text-xs font-mono rounded-lg flex items-center gap-1.5"
+              className="px-3 py-1 bg-zinc-800 border border-zinc-700 text-zinc-200 text-xs font-mono rounded-lg flex items-center gap-1.5"
             >
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
               <span>{tech}</span>

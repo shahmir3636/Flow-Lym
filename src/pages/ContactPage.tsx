@@ -83,10 +83,10 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
           <span className="text-xs font-mono text-zinc-400 uppercase tracking-wider font-medium">
             Contact Us
           </span>
-          <h1 className="text-3xl sm:text-5xl font-semibold tracking-tight text-zinc-950">
+          <h1 className="text-3xl sm:text-5xl font-semibold tracking-tight text-zinc-900">
             Let's discuss your project.
           </h1>
-          <p className="text-zinc-600 text-sm sm:text-base max-w-2xl leading-relaxed">
+          <p className="text-zinc-500 text-sm sm:text-base max-w-2xl leading-relaxed">
             Fill out the form below or email us directly at info@flowlym.tech.
           </p>
         </div>
@@ -100,22 +100,22 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
           <div className="lg:col-span-7 bg-white p-6 sm:p-8 rounded-2xl border border-zinc-200/80">
             {submitted ? (
               <div className="text-center py-12 space-y-4">
-                <div className="w-12 h-12 bg-zinc-100 text-zinc-900 rounded-full flex items-center justify-center mx-auto border border-zinc-200">
+                <div className="w-12 h-12 bg-zinc-100 text-zinc-800 rounded-full flex items-center justify-center mx-auto border border-zinc-200">
                   <CheckCircle2 className="w-6 h-6" />
                 </div>
 
                 <div className="space-y-1">
-                  <h2 className="text-xl font-semibold tracking-tight text-zinc-950">
+                  <h2 className="text-xl font-semibold tracking-tight text-zinc-900">
                     Message Received
                   </h2>
-                  <p className="text-zinc-600 text-xs max-w-sm mx-auto leading-relaxed">
+                  <p className="text-zinc-500 text-xs max-w-sm mx-auto leading-relaxed">
                     Thank you, <span className="font-semibold">{formData.name}</span>. Your inquiry has been sent to <span className="font-semibold">info@flowlym.tech</span>. We will get back to you shortly.
                   </p>
                 </div>
 
                 <button
                   onClick={() => setSubmitted(false)}
-                  className="px-5 py-2.5 bg-zinc-900 text-white text-xs font-medium rounded-full hover:bg-zinc-800 transition-colors"
+                  className="px-5 py-2.5 bg-zinc-800 text-white text-xs font-medium rounded-full hover:bg-zinc-700 transition-colors"
                 >
                   Send Another Message
                 </button>
@@ -132,7 +132,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <div className="space-y-1">
-                    <label className="font-medium text-zinc-700">Full Name *</label>
+                    <label className="font-medium text-zinc-600">Full Name *</label>
                     <input
                       required
                       type="text"
@@ -144,7 +144,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
                   </div>
 
                   <div className="space-y-1">
-                    <label className="font-medium text-zinc-700">Work Email *</label>
+                    <label className="font-medium text-zinc-600">Work Email *</label>
                     <input
                       required
                       type="email"
@@ -158,7 +158,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <div className="space-y-1">
-                    <label className="font-medium text-zinc-700">Phone</label>
+                    <label className="font-medium text-zinc-600">Phone</label>
                     <input
                       type="tel"
                       placeholder="+1 (555) 000-0000"
@@ -169,7 +169,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
                   </div>
 
                   <div className="space-y-1">
-                    <label className="font-medium text-zinc-700">Company</label>
+                    <label className="font-medium text-zinc-600">Company</label>
                     <input
                       type="text"
                       placeholder="Your company"
@@ -182,7 +182,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
 
                 {/* Services */}
                 <div className="space-y-1.5">
-                  <label className="font-medium text-zinc-700 block">Services Required</label>
+                  <label className="font-medium text-zinc-600 block">Services Required</label>
                   <div className="flex flex-wrap gap-1.5">
                     {availableServices.map((svc) => {
                       const isSelected = formData.selectedServices.includes(svc);
@@ -193,8 +193,8 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
                           onClick={() => handleServiceToggle(svc)}
                           className={`px-2.5 py-1 rounded-md text-xs font-mono transition-all border ${
                             isSelected
-                              ? 'bg-zinc-900 text-white border-zinc-900'
-                              : 'bg-zinc-50 text-zinc-700 border-zinc-200 hover:bg-zinc-100'
+                              ? 'bg-zinc-800 text-white border-zinc-800'
+                              : 'bg-zinc-50 text-zinc-600 border-zinc-200 hover:bg-zinc-100'
                           }`}
                         >
                           {isSelected ? '✓ ' : '+ '} {svc}
@@ -206,7 +206,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
 
                 {/* Message */}
                 <div className="space-y-1">
-                  <label className="font-medium text-zinc-700">Project Overview</label>
+                  <label className="font-medium text-zinc-600">Project Overview</label>
                   <textarea
                     rows={4}
                     placeholder="Describe your technical requirements, goals, or timeline expectations..."
@@ -219,7 +219,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full py-3 bg-zinc-900 text-white text-xs font-medium rounded-full hover:bg-zinc-800 transition-colors flex items-center justify-center gap-2 shadow-xs disabled:opacity-50 cursor-pointer"
+                  className="w-full py-3 bg-zinc-800 text-white text-xs font-medium rounded-full hover:bg-zinc-700 transition-colors flex items-center justify-center gap-2 shadow-xs disabled:opacity-50 cursor-pointer"
                 >
                   {loading ? (
                     <>
@@ -239,7 +239,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
 
           {/* Contact Details Side */}
           <div className="lg:col-span-5 space-y-6">
-            <div className="p-6 bg-zinc-900 text-white rounded-2xl space-y-6">
+            <div className="p-6 bg-zinc-800 text-white rounded-2xl space-y-6">
               <h3 className="text-base font-semibold tracking-tight">Direct Channels</h3>
 
               <div className="space-y-4 text-xs text-zinc-300">
@@ -256,8 +256,8 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
             </div>
 
             <div className="p-6 bg-zinc-50 border border-zinc-200/80 rounded-2xl space-y-2">
-              <h4 className="text-xs font-semibold text-zinc-950">NDA & Security Policy</h4>
-              <p className="text-xs text-zinc-600 leading-relaxed">
+              <h4 className="text-xs font-semibold text-zinc-900">NDA & Security Policy</h4>
+              <p className="text-xs text-zinc-500 leading-relaxed">
                 We sign mutual non-disclosure agreements before reviewing proprietary project codebases or sensitive business logic.
               </p>
             </div>

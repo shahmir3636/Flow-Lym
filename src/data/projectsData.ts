@@ -213,7 +213,7 @@ export const PROJECTS_DATA: ProjectItem[] = [
       'Automated Status Progression Triggers'
     ],
     integrations: ['Legacy PHP 5.6 CRM', 'n8n Workflow Core', 'REST Webhooks', 'Custom Data Pipeline'],
-    image: 'https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?auto=format&fit=crop&w=1200&q=80',
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80',
     metrics: [
       { label: 'Legacy Architecture', value: '100% Preserved' },
       { label: 'Lead Processing', value: 'Automated Routing' },
@@ -351,7 +351,7 @@ export const PROJECTS_DATA: ProjectItem[] = [
       'Context-Aware Automated Direct Response Generation'
     ],
     integrations: ['Meta Graph API (Facebook & Instagram)', 'n8n Automation Engine', 'CRM Systems', 'Cloud Media Storage'],
-    image: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=1200&q=80',
+    image: 'https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?auto=format&fit=crop&w=1200&q=80',
     metrics: [
       { label: 'Response Velocity', value: 'Instant 24/7' },
       { label: 'Lead Capture Flow', value: 'Direct to CRM' },
@@ -455,7 +455,7 @@ export const PROJECTS_DATA: ProjectItem[] = [
       'Promotional Micro-Copy Generator'
     ],
     integrations: ['Google Sheets', 'Google Drive API', 'n8n Automation Core', 'POS/Digital Menu APIs', 'Webhooks'],
-    image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80',
+    image: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1200&q=80',
     metrics: [
       { label: 'Data Source', value: 'Single Source of Truth' },
       { label: 'Menu Enrichment', value: 'AI-Generated Copy' },
@@ -551,7 +551,7 @@ export const PROJECTS_DATA: ProjectItem[] = [
       'Automated SEO Tag & Description Formatter'
     ],
     integrations: ['Shopify Admin API (REST & GraphQL)', 'Google Drive API', 'Google Sheets API', 'n8n Workflow Engine'],
-    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80',
+    image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1200&q=80',
     metrics: [
       { label: 'Publishing Method', value: 'Repeatable Pipeline' },
       { label: 'Asset Linking', value: 'Cloud Drive Sync' },
@@ -639,7 +639,7 @@ export const PROJECTS_DATA: ProjectItem[] = [
       'Contextual Alert Summary Generator'
     ],
     integrations: ['CRM Platforms', 'n8n Automation Engine', 'Communication & Messaging APIs', 'Webhook Gateways'],
-    image: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=1200&q=80',
+    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80',
     metrics: [
       { label: 'Alert Dispatch', value: 'Real-Time < 2s' },
       { label: 'Uptime Coverage', value: '24/7 Event-Driven' },
@@ -649,15 +649,15 @@ export const PROJECTS_DATA: ProjectItem[] = [
 
 
   {
-    id: 'pakistan-car-rental-ai-automation',
+    id: 'car-rental-ai-automation',
     projectNumber: '07',
-    title: 'Pakistan Car Rental AI Automation System',
+    title: 'Car Rental AI Automation System',
     client: 'Car Rental Operations Demo',
     industry: 'Automotive & Mobility',
     category: 'ai-automation',
     categoryTags: ['AI Automation', 'Car Rental', 'CRM Automation', 'WhatsApp AI'],
     shortDesc: 'AI-powered car rental operations system that automates enquiries, booking management, fleet tracking, follow-ups, call handling and reporting from one operational dashboard.',
-    fullDesc: 'Built a Pakistan-focused car rental automation system that connects AI customer conversations with booking operations, fleet availability, follow-ups, agent workflows and analytics. The dashboard provides a realistic operational view of how an AI employee can handle repetitive rental enquiries while keeping humans in control of exceptions and high-value bookings.',
+    fullDesc: 'Built a car rental automation system that connects AI customer conversations with booking operations, fleet availability, follow-ups, agent workflows and analytics. The dashboard provides a realistic operational view of how an AI employee can handle repetitive rental enquiries while keeping humans in control of exceptions and high-value bookings.',
     businessProblem: 'Car rental teams repeatedly answer availability questions, collect customer details, create bookings, update calendars, follow up with undecided customers and monitor fleet status manually. These disconnected tasks create slow response times, missed follow-ups and unnecessary administrative work.',
     solutionArchitecture: 'Designed an event-driven automation layer around WhatsApp and voice AI, structured customer and booking data, calendar actions, fleet records, follow-up scheduling and human escalation. Incoming enquiries can be classified, matched against available vehicles, converted into booking records and routed to an AI or human agent while the dashboard exposes the operational state in real time.',
     keyCapabilities: [
@@ -702,7 +702,7 @@ export const PROJECTS_DATA: ProjectItem[] = [
         tool: 'WhatsApp / Voice Webhook',
         category: 'trigger',
         description: 'Receives a rental enquiry from messaging or voice channels and creates a structured conversation event.',
-        dataPayload: '{ customer: "Ayesha Malik", channel: "WhatsApp", dates: "5-8 Aug", passengers: 4 }'
+        dataPayload: '{ customer: "Emma Wilson", channel: "WhatsApp", dates: "5-8 Aug", passengers: 4 }'
       },
       {
         id: 'car-2',
@@ -711,7 +711,7 @@ export const PROJECTS_DATA: ProjectItem[] = [
         tool: 'AI Agent + Memory',
         category: 'ai',
         description: 'Extracts vehicle preference, dates, pickup requirements, budget and other booking constraints from natural conversation.',
-        dataPayload: '{ vehicle: "Honda City", pickup: "Islamabad", durationDays: 3, intent: "book" }'
+        dataPayload: '{ vehicle: "Toyota Camry", pickup: "Dubai Airport", durationDays: 3, intent: "book" }'
       },
       {
         id: 'car-3',
@@ -720,7 +720,7 @@ export const PROJECTS_DATA: ProjectItem[] = [
         tool: 'Fleet / CRM Data',
         category: 'storage',
         description: 'Checks vehicle availability, rental status and pricing before the AI offers an option to the customer.',
-        dataPayload: '{ vehicleId: "ISB-05-IJ-7890", available: true, dailyRate: 18000 }'
+        dataPayload: '{ vehicleId: "DXB-05-IJ-7890", available: true, dailyRate: 85 }'
       },
       {
         id: 'car-4',
@@ -729,7 +729,7 @@ export const PROJECTS_DATA: ProjectItem[] = [
         tool: 'n8n + Google Calendar',
         category: 'crm',
         description: 'Creates the booking record, calculates the rental total and updates the operational calendar.',
-        dataPayload: '{ bookingId: "BK-3047", total: 64800, deposit: 25000, calendar: "updated" }'
+        dataPayload: '{ bookingId: "BK-3047", total: 255, deposit: 100, calendar: "updated" }'
       },
       {
         id: 'car-5',
@@ -771,15 +771,15 @@ export const PROJECTS_DATA: ProjectItem[] = [
   },
 
   {
-    id: 'pakistan-travel-ai-employee',
+    id: 'travel-agency-ai-employee',
     projectNumber: '08',
-    title: 'Pakistan Travel Agency AI Employee',
+    title: 'Travel Agency AI Employee',
     client: 'Travel Operations Demo',
     industry: 'Travel & Hospitality',
     category: 'ai-automation',
     categoryTags: ['AI Automation', 'WhatsApp Automation', 'Lead Management', 'Travel Operations'],
     shortDesc: 'An AI travel employee that handles WhatsApp enquiries, qualifies travellers, recommends packages, generates itineraries, manages follow-ups and escalates complex requests.',
-    fullDesc: 'Built a complete AI employee workflow for a Pakistan-focused travel agency. The system turns incoming WhatsApp enquiries into structured leads, asks the right qualification questions, reads package data, recommends relevant trips, supports itinerary generation, schedules follow-ups and routes edge cases to a human travel consultant.',
+    fullDesc: 'Built a complete AI employee workflow for a global travel agency. The system turns incoming WhatsApp enquiries into structured leads, asks the right qualification questions, reads package data, recommends relevant trips, supports itinerary generation, schedules follow-ups and routes edge cases to a human travel consultant.',
     businessProblem: 'Travel teams lose sales when enquiries arrive after hours, agents repeatedly ask the same qualification questions, package information is scattered across spreadsheets, and unresponsive prospects are forgotten. Manual follow-up also makes it difficult to maintain a consistent customer experience as enquiry volume grows.',
     solutionArchitecture: 'Designed an event-driven n8n orchestration layer around WhatsApp Business messaging, Google Sheets package and lead data, an LLM agent, automated follow-up scheduling and a human-escalation path. The AI employee extracts destination, budget, travel dates and passenger count, retrieves matching packages, maintains structured lead state and triggers the next action without requiring an agent to manually manage every conversation.',
     keyCapabilities: [
@@ -810,7 +810,7 @@ export const PROJECTS_DATA: ProjectItem[] = [
       'WhatsApp enquiry received through webhook',
       'AI extracts customer intent and travel requirements',
       'Lead is created or updated in the structured lead sheet',
-      'Package catalog is searched for relevant Pakistan destinations',
+      'Package catalog is searched for relevant global destinations',
       'AI recommends packages and builds an itinerary',
       'Qualified leads move through the sales pipeline',
       'Quiet leads enter an automated follow-up schedule',
@@ -825,7 +825,7 @@ export const PROJECTS_DATA: ProjectItem[] = [
         tool: 'WhatsApp Business API',
         category: 'trigger',
         description: 'Receives inbound customer messages and passes the conversation event into the automation layer.',
-        dataPayload: '{ phone: "+92300...", message, timestamp, conversationId }'
+        dataPayload: '{ phone: "+1415...", message, timestamp, conversationId }'
       },
       {
         id: 'travel-2',
@@ -834,7 +834,7 @@ export const PROJECTS_DATA: ProjectItem[] = [
         tool: 'LLM Agent',
         category: 'ai',
         description: 'Collects destination, budget, travel dates and passenger count while keeping the conversation natural.',
-        dataPayload: '{ destination: "Hunza", budget: 180000, passengers: 4, dates: "Sep 12-18" }'
+        dataPayload: '{ destination: "Bali", budget: 3200, passengers: 4, dates: "Sep 12-18" }'
       },
       {
         id: 'travel-3',
@@ -852,7 +852,7 @@ export const PROJECTS_DATA: ProjectItem[] = [
         tool: 'Google Sheets Package Catalog',
         category: 'storage',
         description: 'Retrieves packages matching destination, budget and traveller preferences.',
-        dataPayload: '{ package: "Hunza Explorer", price: 179500, duration: "7 Days" }'
+        dataPayload: '{ package: "Bali Discovery", price: 2990, duration: "7 Days" }'
       },
       {
         id: 'travel-5',
@@ -883,7 +883,10 @@ export const PROJECTS_DATA: ProjectItem[] = [
       'Human-escalation summarization'
     ],
     integrations: ['WhatsApp Business API', 'Google Sheets', 'Groq / LLM API', 'n8n Automation Engine', 'Webhook Gateway', 'Payment Gateway API'],
-    image: '/assets/pakistan-travel-ai-dashboard.svg',
+    image: '/assets/travel-agency-ai-dashboard.png',
+    gallery: [
+      '/assets/travel-agency-ai-dashboard.png'
+    ],
     metrics: [
       { label: 'First Response', value: '< 30 Seconds' },
       { label: 'Coverage', value: '24/7 AI Front Line' },
@@ -891,4 +894,72 @@ export const PROJECTS_DATA: ProjectItem[] = [
       { label: 'Lead Flow', value: 'Capture → Qualify → Book' }
     ]
   },
+
+  {
+    id: 'fluence-ai-platform',
+    projectNumber: '09',
+    title: 'Nexus Workspace — VIBE CODED AI Platform',
+    client: 'FLOWLYM Engineered',
+    industry: 'SaaS & Enterprise AI',
+    category: 'web-development',
+    categoryTags: ['⚡ VIBE CODED', 'Web Development', 'React', 'Frontend Engineering', 'Interactive UI'],
+    shortDesc: 'Vibe Coded by FLOWLYM — A high-performance interactive web application demonstrating a modern AI workspace platform with smooth animations and responsive layouts.',
+    fullDesc: 'VIBE CODED and engineered by FLOWLYM. Developed a comprehensive web showcase for an AI workspace product. The architecture prioritizes performance, accessibility, and high-fidelity scrolling interactions to create an immersive enterprise software experience.',
+    businessProblem: 'Modern SaaS companies need marketing sites that feel as fast and sophisticated as their actual products, requiring complex frontend interactions without sacrificing load speed.',
+    solutionArchitecture: 'Vibe coded on a modern frontend stack with optimized asset delivery, structural CSS grid layouts, and hardware-accelerated animations to ensure smooth performance across devices.',
+    keyCapabilities: ['VIBE CODED Architecture', 'Responsive Layouts', 'Dark Theme UI', 'Hardware-accelerated Animations', 'Interactive Components', 'Optimized Assets'],
+    technologyStack: ['React', 'TypeScript', 'Framer Motion', 'Tailwind CSS', 'Vite'],
+    categorizedTechStack: [
+      { name: 'React', category: 'Frontend' },
+      { name: 'TypeScript', category: 'Frontend' },
+      { name: 'Framer Motion', category: 'Animation' },
+      { name: 'Tailwind CSS', category: 'Styling' }
+    ],
+    image: 'https://images.unsplash.com/photo-1616469829581-73993eb86b02?auto=format&fit=crop&w=1200&q=80',
+    metrics: [{ label: 'Engineering', value: 'VIBE CODED' }, { label: 'Performance', value: '100% Optimized' }]
+  },
+  {
+    id: 'haven-interior-studio',
+    projectNumber: '10',
+    title: 'Lumina Studio — VIBE CODED Architecture Studio',
+    client: 'FLOWLYM Engineered',
+    industry: 'Architecture & Design',
+    category: 'web-development',
+    categoryTags: ['⚡ VIBE CODED', 'Web Development', 'UI/UX', 'Portfolio', 'Immersive UI'],
+    shortDesc: 'Vibe Coded by FLOWLYM — An elegant spatial portfolio website for an interior architecture studio, featuring typography-driven design and smooth image reveals.',
+    fullDesc: 'VIBE CODED and engineered by FLOWLYM. Created a visually stunning web showcase for design professionals. The interface uses sophisticated typographic scales, subtle parallax and scroll-linked animations to complement high-resolution architectural photography.',
+    businessProblem: 'Creative studios struggle to find web formats that do justice to their spatial work without overwhelming the user with heavy, slow image galleries.',
+    solutionArchitecture: 'Vibe coded with a lightweight frontend framework, lazy-loaded imagery, smooth scroll techniques, and minimal UI elements to keep the focus entirely on the architectural content.',
+    keyCapabilities: ['VIBE CODED Spatial UI', 'Image Lazy Loading', 'Typographic Precision', 'Soft Page Transitions', 'Portfolio Gallery', 'Responsive Design'],
+    technologyStack: ['React', 'TypeScript', 'CSS Modules', 'Vite'],
+    categorizedTechStack: [
+      { name: 'React', category: 'Frontend' },
+      { name: 'CSS / SCSS', category: 'Styling' }
+    ],
+    image: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80',
+    metrics: [{ label: 'Engineering', value: 'VIBE CODED' }, { label: 'Design', value: 'Spatial & Minimal' }]
+  },
+  {
+    id: 'macxfolio-os-portfolio',
+    projectNumber: '11',
+    title: 'OSX Portfolio — VIBE CODED Interactive Desktop OS',
+    client: 'FLOWLYM Engineered',
+    industry: 'Creative & Personal Branding',
+    category: 'web-development',
+    categoryTags: ['⚡ VIBE CODED', 'Web Development', 'Interactive Design', 'Creative Coding', 'Frontend Engineering'],
+    shortDesc: 'Vibe Coded by FLOWLYM — A highly interactive personal portfolio engineered to mimic a desktop operating system environment, complete with draggable windows and a functional dock.',
+    fullDesc: 'VIBE CODED and engineered by FLOWLYM. Created a creative web experience that reimagines the traditional portfolio as a simulated operating system. Users interact with the site by opening apps, dragging windows, and exploring the filesystem conceptually.',
+    businessProblem: 'Designers and developers need memorable ways to stand out in a crowded market beyond standard grid-based portfolios.',
+    solutionArchitecture: 'Vibe coded with a complex state-management system to handle window stacking (z-index), dragging bounds, minimize/maximize transformations, and global desktop states.',
+    keyCapabilities: ['VIBE CODED OS Engine', 'Draggable Windows', 'Desktop OS Simulation', 'App Dock', 'Interactive Widgets', 'Complex State Management'],
+    technologyStack: ['React', 'Zustand', 'Framer Motion', 'TypeScript'],
+    categorizedTechStack: [
+      { name: 'React Context / Zustand', category: 'State Management' },
+      { name: 'Framer Motion', category: 'Animation' },
+      { name: 'TypeScript', category: 'Frontend' }
+    ],
+    image: 'https://images.unsplash.com/photo-1541807084-5c52b6b3adef?auto=format&fit=crop&w=1200&q=80',
+    metrics: [{ label: 'Engineering', value: 'VIBE CODED' }, { label: 'Experience', value: 'OS Simulation' }]
+  }
+
 ];

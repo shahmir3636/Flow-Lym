@@ -2,42 +2,42 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://flowlym.tech/</loc>
-    <lastmod>2026-08-23</lastmod>
+    <lastmod>2026-08-30</lastmod>
     <priority>1.00</priority>
   </url>
   <url>
     <loc>https://flowlym.tech/services</loc>
-    <lastmod>2026-08-23</lastmod>
+    <lastmod>2026-08-30</lastmod>
     <priority>0.80</priority>
   </url>
   <url>
     <loc>https://flowlym.tech/projects</loc>
-    <lastmod>2026-08-23</lastmod>
+    <lastmod>2026-08-30</lastmod>
     <priority>0.80</priority>
   </url>
   <url>
     <loc>https://flowlym.tech/about</loc>
-    <lastmod>2026-08-23</lastmod>
+    <lastmod>2026-08-30</lastmod>
     <priority>0.80</priority>
   </url>
   <url>
     <loc>https://flowlym.tech/team</loc>
-    <lastmod>2026-08-23</lastmod>
+    <lastmod>2026-08-30</lastmod>
     <priority>0.70</priority>
   </url>
   <url>
     <loc>https://flowlym.tech/ai-demos</loc>
-    <lastmod>2026-08-23</lastmod>
+    <lastmod>2026-08-30</lastmod>
     <priority>0.70</priority>
   </url>
   <url>
     <loc>https://flowlym.tech/roi-calculator</loc>
-    <lastmod>2026-08-23</lastmod>
+    <lastmod>2026-08-30</lastmod>
     <priority>0.70</priority>
   </url>
   <url>
     <loc>https://flowlym.tech/contact</loc>
-    <lastmod>2026-08-23</lastmod>
+    <lastmod>2026-08-30</lastmod>
     <priority>0.80</priority>
   </url>
 </urlset>

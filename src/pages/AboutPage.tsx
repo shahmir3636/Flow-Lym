@@ -38,13 +38,13 @@ export const AboutPage: React.FC<AboutPageProps> = ({
 }) => {
   const getValueIcon = (name: string) => {
     switch (name) {
-      case 'Cpu': return <Cpu className="w-5 h-5 text-zinc-900" />;
-      case 'ShieldCheck': return <ShieldCheck className="w-5 h-5 text-zinc-900" />;
-      case 'Network': return <Network className="w-5 h-5 text-zinc-900" />;
-      case 'Zap': return <Zap className="w-5 h-5 text-zinc-900" />;
-      case 'Lock': return <Lock className="w-5 h-5 text-zinc-900" />;
-      case 'Users': return <Users className="w-5 h-5 text-zinc-900" />;
-      default: return <Sparkles className="w-5 h-5 text-zinc-900" />;
+      case 'Cpu': return <Cpu className="w-5 h-5 text-zinc-800" />;
+      case 'ShieldCheck': return <ShieldCheck className="w-5 h-5 text-zinc-800" />;
+      case 'Network': return <Network className="w-5 h-5 text-zinc-800" />;
+      case 'Zap': return <Zap className="w-5 h-5 text-zinc-800" />;
+      case 'Lock': return <Lock className="w-5 h-5 text-zinc-800" />;
+      case 'Users': return <Users className="w-5 h-5 text-zinc-800" />;
+      default: return <Sparkles className="w-5 h-5 text-zinc-800" />;
     }
   };
 
@@ -58,23 +58,23 @@ export const AboutPage: React.FC<AboutPageProps> = ({
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
             {/* Left Content */}
             <div className="lg:col-span-8 space-y-6">
-              <div className="inline-flex items-center gap-2 px-3 py-1 bg-zinc-100 border border-zinc-200/80 rounded-full text-xs font-mono font-medium text-zinc-800">
-                <Building2 className="w-3.5 h-3.5 text-zinc-600" />
+              <div className="inline-flex items-center gap-2 px-3 py-1 bg-zinc-100 border border-zinc-200/80 rounded-full text-xs font-mono font-medium text-zinc-700">
+                <Building2 className="w-3.5 h-3.5 text-zinc-500" />
                 <span>About FLOWLYM</span>
               </div>
 
-              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-zinc-950 leading-[1.1]">
+              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-zinc-900 leading-[1.1]">
                 Engineering high-reliability software & automation for ambitious companies.
               </h1>
 
-              <p className="text-base sm:text-lg text-zinc-600 leading-relaxed max-w-3xl">
+              <p className="text-base sm:text-lg text-zinc-500 leading-relaxed max-w-3xl">
                 {AGENCY_MISSION.headline} {AGENCY_MISSION.subheadline}
               </p>
 
               <div className="flex flex-wrap items-center gap-3 pt-2">
                 <button
                   onClick={onOpenStartProject}
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-zinc-950 text-white text-xs sm:text-sm font-semibold rounded-full hover:bg-zinc-800 transition-colors shadow-xs"
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-zinc-900 text-white text-xs sm:text-sm font-semibold rounded-full hover:bg-zinc-700 transition-colors shadow-xs"
                 >
                   <span>Work With FLOWLYM</span>
                   <ArrowRight className="w-4 h-4" />
@@ -93,27 +93,27 @@ export const AboutPage: React.FC<AboutPageProps> = ({
               <div className="space-y-4 text-xs">
                 <div>
                   <span className="text-zinc-400 block font-mono">Agency Name</span>
-                  <span className="font-semibold text-zinc-950 text-sm">FLOWLYM Automation</span>
+                  <span className="font-semibold text-zinc-900 text-sm">FLOWLYM Automation</span>
                 </div>
                 <div>
                   <span className="text-zinc-400 block font-mono">Experience</span>
-                  <span className="font-semibold text-zinc-900 text-sm">3+ Years of AI Automation Experience</span>
+                  <span className="font-semibold text-zinc-800 text-sm">3+ Years of AI Automation Experience</span>
                 </div>
                 <div>
                   <span className="text-zinc-400 block font-mono">Engineering HQ</span>
-                  <span className="font-semibold text-zinc-900 text-sm">Pakistan · Remote Delivery</span>
+                  <span className="font-semibold text-zinc-800 text-sm">Pakistan · Remote Delivery</span>
                 </div>
                 <div>
                   <span className="text-zinc-400 block font-mono">Specialization</span>
-                  <span className="font-semibold text-zinc-900 text-sm">AI Automation, Web Development, Custom Software</span>
+                  <span className="font-semibold text-zinc-800 text-sm">AI Automation, Web Development, Custom Software</span>
                 </div>
                 <div>
                   <span className="text-zinc-400 block font-mono">Service Standard</span>
-                  <span className="font-semibold text-zinc-900 text-sm">Practical security & reliable workflow design</span>
+                  <span className="font-semibold text-zinc-800 text-sm">Practical security & reliable workflow design</span>
                 </div>
               </div>
 
-              <div className="p-3 rounded-xl bg-zinc-50 border border-zinc-200/80 text-[11px] text-zinc-600 leading-relaxed">
+              <div className="p-3 rounded-xl bg-zinc-50 border border-zinc-200/80 text-[11px] text-zinc-500 leading-relaxed">
                 "We don't build temporary hacks. We build deterministic, maintainable digital engines designed to scale with your business."
               </div>
             </div>
@@ -126,13 +126,13 @@ export const AboutPage: React.FC<AboutPageProps> = ({
                 key={idx} 
                 className="p-5 sm:p-6 rounded-2xl bg-white border border-zinc-200/90 shadow-2xs space-y-2 hover:border-zinc-300 transition-colors"
               >
-                <div className="text-3xl sm:text-4xl font-bold font-mono text-zinc-950 tracking-tight">
+                <div className="text-3xl sm:text-4xl font-bold font-mono text-zinc-900 tracking-tight">
                   {stat.value}
                 </div>
-                <div className="font-semibold text-xs sm:text-sm text-zinc-900">
+                <div className="font-semibold text-xs sm:text-sm text-zinc-800">
                   {stat.label}
                 </div>
-                <p className="text-[11px] sm:text-xs text-zinc-500 leading-relaxed">
+                <p className="text-[11px] sm:text-xs text-zinc-400 leading-relaxed">
                   {stat.detail}
                 </p>
               </div>
@@ -147,22 +147,22 @@ export const AboutPage: React.FC<AboutPageProps> = ({
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
           
           <div className="lg:col-span-5 space-y-4">
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-zinc-100 border border-zinc-200/80 rounded-full text-xs font-mono font-medium text-zinc-800">
-              <Compass className="w-3.5 h-3.5 text-zinc-600" />
+            <div className="inline-flex items-center gap-2 px-3 py-1 bg-zinc-100 border border-zinc-200/80 rounded-full text-xs font-mono font-medium text-zinc-700">
+              <Compass className="w-3.5 h-3.5 text-zinc-500" />
               <span>Our Origins</span>
             </div>
-            <h2 className="text-2xl sm:text-4xl font-bold tracking-tight text-zinc-950">
+            <h2 className="text-2xl sm:text-4xl font-bold tracking-tight text-zinc-900">
               {AGENCY_STORY.originTitle}
             </h2>
-            <p className="text-sm text-zinc-600 leading-relaxed">
+            <p className="text-sm text-zinc-500 leading-relaxed">
               FLOWLYM was created to turn hands-on automation experience into practical systems that growing businesses can actually use and maintain.
             </p>
           </div>
 
-          <div className="lg:col-span-7 space-y-5 text-sm sm:text-base text-zinc-700 leading-relaxed bg-white p-6 sm:p-8 rounded-2xl border border-zinc-200/90 shadow-2xs">
+          <div className="lg:col-span-7 space-y-5 text-sm sm:text-base text-zinc-600 leading-relaxed bg-white p-6 sm:p-8 rounded-2xl border border-zinc-200/90 shadow-2xs">
             <p>{AGENCY_STORY.paragraph1}</p>
             <p>{AGENCY_STORY.paragraph2}</p>
-            <p className="text-zinc-900 font-medium">{AGENCY_STORY.paragraph3}</p>
+            <p className="text-zinc-800 font-medium">{AGENCY_STORY.paragraph3}</p>
           </div>
 
         </div>
@@ -171,14 +171,14 @@ export const AboutPage: React.FC<AboutPageProps> = ({
       {/* SECTION 3: CORE ENGINEERING PRINCIPLES & VALUES */}
       <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         <div className="space-y-3">
-          <div className="inline-flex items-center gap-2 px-3 py-1 bg-zinc-100 border border-zinc-200/80 rounded-full text-xs font-mono font-medium text-zinc-800">
-            <Award className="w-3.5 h-3.5 text-zinc-600" />
+          <div className="inline-flex items-center gap-2 px-3 py-1 bg-zinc-100 border border-zinc-200/80 rounded-full text-xs font-mono font-medium text-zinc-700">
+            <Award className="w-3.5 h-3.5 text-zinc-500" />
             <span>Guiding Principles</span>
           </div>
-          <h2 className="text-2xl sm:text-4xl font-bold tracking-tight text-zinc-950">
+          <h2 className="text-2xl sm:text-4xl font-bold tracking-tight text-zinc-900">
             How We Build: The FLOWLYM Engineering Standard
           </h2>
-          <p className="text-zinc-600 text-xs sm:text-sm max-w-2xl leading-relaxed">
+          <p className="text-zinc-500 text-xs sm:text-sm max-w-2xl leading-relaxed">
             Every software system, AI pipeline, and automated workflow we produce is governed by strict engineering values.
           </p>
         </div>
@@ -193,13 +193,13 @@ export const AboutPage: React.FC<AboutPageProps> = ({
                 <div className="w-10 h-10 rounded-xl bg-zinc-100 border border-zinc-200/80 flex items-center justify-center">
                   {getValueIcon(val.iconName)}
                 </div>
-                <h3 className="text-base sm:text-lg font-bold text-zinc-950 tracking-tight">
+                <h3 className="text-base sm:text-lg font-bold text-zinc-900 tracking-tight">
                   {val.title}
                 </h3>
-                <div className="text-[11px] font-mono text-zinc-500 uppercase tracking-wider">
+                <div className="text-[11px] font-mono text-zinc-400 uppercase tracking-wider">
                   {val.tagline}
                 </div>
-                <p className="text-xs sm:text-sm text-zinc-600 leading-relaxed">
+                <p className="text-xs sm:text-sm text-zinc-500 leading-relaxed">
                   {val.description}
                 </p>
               </div>
@@ -210,10 +210,10 @@ export const AboutPage: React.FC<AboutPageProps> = ({
 
       {/* SECTION 5: RELIABILITY PROTOCOL & ENGINEERING STANDARDS */}
       <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="p-8 sm:p-10 rounded-2xl bg-zinc-950 text-white space-y-8 shadow-md">
+        <div className="p-8 sm:p-10 rounded-2xl bg-zinc-900 text-white space-y-8 shadow-md">
           
           <div className="space-y-3 max-w-2xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-zinc-900 border border-zinc-800 rounded-full text-xs font-mono text-zinc-300">
+            <div className="inline-flex items-center gap-2 px-3 py-1 bg-zinc-800 border border-zinc-700 rounded-full text-xs font-mono text-zinc-300">
               <Terminal className="w-3.5 h-3.5 text-zinc-300" />
               <span>Production Protocol</span>
             </div>
@@ -229,7 +229,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
             {ENGINEERING_STANDARDS.map((std, idx) => (
               <div 
                 key={idx}
-                className="p-5 rounded-xl bg-zinc-900 border border-zinc-800 space-y-2"
+                className="p-5 rounded-xl bg-zinc-800 border border-zinc-700 space-y-2"
               >
                 <div className="flex items-center gap-2 text-sm font-semibold text-white">
                   <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
@@ -248,14 +248,14 @@ export const AboutPage: React.FC<AboutPageProps> = ({
       {/* SECTION 6: HOW WE COLLABORATE (DELIVERY SPRINT ROADMAP) */}
       <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         <div className="space-y-3">
-          <div className="inline-flex items-center gap-2 px-3 py-1 bg-zinc-100 border border-zinc-200/80 rounded-full text-xs font-mono font-medium text-zinc-800">
-            <Layers className="w-3.5 h-3.5 text-zinc-600" />
+          <div className="inline-flex items-center gap-2 px-3 py-1 bg-zinc-100 border border-zinc-200/80 rounded-full text-xs font-mono font-medium text-zinc-700">
+            <Layers className="w-3.5 h-3.5 text-zinc-500" />
             <span>Collaboration Workflow</span>
           </div>
-          <h2 className="text-2xl sm:text-4xl font-bold tracking-tight text-zinc-950">
+          <h2 className="text-2xl sm:text-4xl font-bold tracking-tight text-zinc-900">
             How You Work With FLOWLYM
           </h2>
-          <p className="text-zinc-600 text-xs sm:text-sm max-w-2xl leading-relaxed">
+          <p className="text-zinc-500 text-xs sm:text-sm max-w-2xl leading-relaxed">
             Direct, senior-led execution with no account managers in the middle. We move from discovery to production swiftly.
           </p>
         </div>
@@ -287,13 +287,13 @@ export const AboutPage: React.FC<AboutPageProps> = ({
               key={idx}
               className="p-6 rounded-2xl bg-white border border-zinc-200/90 shadow-2xs space-y-3"
             >
-              <span className="text-2xl font-mono font-bold text-zinc-900 block">
+              <span className="text-2xl font-mono font-bold text-zinc-800 block">
                 {item.step}
               </span>
-              <h3 className="text-base font-bold text-zinc-950">
+              <h3 className="text-base font-bold text-zinc-900">
                 {item.title}
               </h3>
-              <p className="text-xs text-zinc-600 leading-relaxed">
+              <p className="text-xs text-zinc-500 leading-relaxed">
                 {item.desc}
               </p>
             </div>
@@ -303,7 +303,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
 
       {/* SECTION 7: FINAL CTA BANNER */}
       <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="p-8 sm:p-12 rounded-2xl bg-zinc-950 text-white flex flex-col md:flex-row items-start md:items-center justify-between gap-8 shadow-lg">
+        <div className="p-8 sm:p-12 rounded-2xl bg-zinc-900 text-white flex flex-col md:flex-row items-start md:items-center justify-between gap-8 shadow-lg">
           <div className="space-y-3 max-w-xl">
             <h2 className="text-2xl sm:text-4xl font-bold tracking-tight text-white">
               Ready to automate your operations with FLOWLYM?
@@ -316,14 +316,14 @@ export const AboutPage: React.FC<AboutPageProps> = ({
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full md:w-auto">
             <button
               onClick={onOpenStartProject}
-              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-white text-zinc-950 text-xs sm:text-sm font-semibold rounded-full hover:bg-zinc-100 transition-colors shrink-0 shadow-xs"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-white text-zinc-900 text-xs sm:text-sm font-semibold rounded-full hover:bg-zinc-100 transition-colors shrink-0 shadow-xs"
             >
               <span>Start Technical Discovery</span>
               <ArrowUpRight className="w-4 h-4" />
             </button>
             <button
               onClick={() => onNavigate('roi-calculator')}
-              className="inline-flex items-center justify-center gap-2 px-5 py-3.5 bg-zinc-900 text-zinc-200 border border-zinc-800 text-xs sm:text-sm font-medium rounded-full hover:bg-zinc-800 transition-colors shrink-0"
+              className="inline-flex items-center justify-center gap-2 px-5 py-3.5 bg-zinc-800 text-zinc-200 border border-zinc-700 text-xs sm:text-sm font-medium rounded-full hover:bg-zinc-700 transition-colors shrink-0"
             >
               <span>Calculate Savings</span>
             </button>

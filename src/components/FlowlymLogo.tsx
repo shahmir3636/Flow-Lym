@@ -28,7 +28,7 @@ export const FlowlymLogo: React.FC<FlowlymLogoProps> = ({
         className={markClass}
       />
       {showWordmark && variant === 'full' && (
-        <span className={`font-bold text-[15px] sm:text-base tracking-[-0.03em] ${theme === 'dark' ? 'text-white' : 'text-zinc-950'}`}>
+        <span className={`font-bold text-[15px] sm:text-base tracking-[-0.03em] ${theme === 'dark' ? 'text-white' : 'text-zinc-900'}`}>
           FLOWLYM
         </span>
       )}

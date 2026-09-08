@@ -4,6 +4,7 @@ import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
 import { ProjectModal } from './components/ProjectModal';
 import { AutomationAtmosphere } from './components/AutomationAtmosphere';
+import { FloatingContactDock } from './components/FloatingContactDock';
 
 // Pages
 import { HomePage } from './pages/HomePage';
@@ -57,15 +58,15 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#FAFAFA] text-[#18181B] selection:bg-violet-200 selection:text-violet-950 flex flex-col font-sans relative overflow-x-hidden">
+    <div className="min-h-screen bg-white text-[#18181B] selection:bg-zinc-200 selection:text-zinc-950 flex flex-col font-sans relative overflow-x-hidden">
       
       <AutomationAtmosphere />
 
       {/* Soft Ambient Top Lighting (No straight lines or geometric cages) */}
       <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-        <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-gradient-to-b from-violet-500/[0.06] via-fuchsia-500/[0.025] to-transparent rounded-full blur-3xl" />
-        <div className="absolute top-1/3 -left-32 w-96 h-96 bg-cyan-500/[0.025] rounded-full blur-3xl" />
-        <div className="absolute top-2/3 -right-32 w-96 h-96 bg-violet-400/[0.025] rounded-full blur-3xl" />
+        <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-gradient-to-b from-zinc-400/[0.08] via-zinc-500/[0.04] to-transparent rounded-full blur-3xl" />
+        <div className="absolute top-1/3 -left-32 w-96 h-96 bg-zinc-400/[0.04] rounded-full blur-3xl" />
+        <div className="absolute top-2/3 -right-32 w-96 h-96 bg-zinc-400/[0.04] rounded-full blur-3xl" />
       </div>
 
       {/* Sticky Fixed Top Header Navigation */}
@@ -145,6 +146,8 @@ export default function App() {
         onStartProject={() => setIsStartProjectOpen(true)}
         onOpenDemo={() => handleNavigate('ai-demos')}
       />
+
+      <FloatingContactDock />
 
     </div>
   );
